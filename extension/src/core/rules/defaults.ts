@@ -19,6 +19,7 @@ export const DEFAULT_RULES: RuleSet = {
         'payment_details_change',
         'sender_lookalike_domain',
         'link_text_mismatch',
+        'link_lookalike_domain',
         'document_edited',
         'invoice_amount_unusual',
         'tactic_urgency',
@@ -82,6 +83,12 @@ export const DEFAULT_RULES: RuleSet = {
       name: 'Lookalike sender',
       verdict: 'amber',
       all: ['sender_lookalike_domain'],
+    },
+    {
+      id: 'lookalike_link',
+      name: 'Link to a lookalike domain',
+      verdict: 'amber',
+      all: ['link_lookalike_domain'],
     },
     {
       id: 'misleading_link',

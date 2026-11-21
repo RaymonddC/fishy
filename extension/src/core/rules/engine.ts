@@ -25,6 +25,7 @@ export const SIGNAL_TYPES = [
   'sender_name_mismatch',
   'sender_unknown',
   'link_text_mismatch',
+  'link_lookalike_domain',
   'link_unsafe',
   // from checking the invoice
   'bank_account_changed',
@@ -90,7 +91,8 @@ const FLAG_TEXT: Record<Exclude<SignalType, 'money_request'>, string> = {
   sender_name_mismatch: 'The sender’s name does not match their address',
   sender_unknown: 'The sender is not in the directory',
   link_text_mismatch: 'A link shows one address but goes to another',
-  link_unsafe: 'A link is on a list of unsafe sites',
+  link_lookalike_domain: 'A link goes to a domain that imitates one you know',
+  link_unsafe: 'A link may be unsafe: it is on a list of suspected unsafe sites',
   bank_account_changed: 'The bank account differs from this supplier’s past invoices',
   invoice_amount_unusual: 'The amount is far from this supplier’s usual invoices',
   document_edited: 'The document was changed after it was created',
