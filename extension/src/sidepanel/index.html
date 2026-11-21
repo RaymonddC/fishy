@@ -37,10 +37,21 @@
         <p id="download-progress" class="hint" hidden></p>
       </section>
 
+      <section class="card" aria-labelledby="captions-title">
+        <h2 id="captions-title">Live captions</h2>
+        <p id="captions-status" class="hint">Open a meeting and turn on captions, or paste the text below</p>
+        <ol id="captions-list" class="captions" hidden></ol>
+        <button id="captions-check" class="button button-primary" type="button" hidden>Check these captions</button>
+      </section>
+
       <section class="card" aria-labelledby="message-title">
-        <h2 id="message-title"><label for="message">Message to check</label></h2>
-        <textarea id="message" rows="8" placeholder="Paste meeting captions or an email here"></textarea>
-        <button id="check" class="button button-primary" type="button">Check message</button>
+        <h2 id="message-title"><label for="message">Pasted text</label></h2>
+        <textarea
+          id="message"
+          rows="8"
+          placeholder="Paste meeting captions or an email here. One line per speaker, such as “Name: what they said”"
+        ></textarea>
+        <button id="check" class="button button-primary" type="button">Check pasted text</button>
       </section>
 
       <section id="result" class="card" aria-labelledby="result-title" aria-live="polite" hidden>

@@ -13,6 +13,7 @@ In progress. The build runs from 22 to 30 November 2026, and this README is upda
 | Piece | State |
 |---|---|
 | Task 1: a message is read by Gemini Nano in the side panel, or in the cloud after redaction | Code and automated tests done. Not yet confirmed on a real laptop |
+| Task 2: live meeting captions reach the side panel, with pasted text as the fallback | Code and automated tests done. Not yet confirmed in a real meeting |
 | Everything else | Not started |
 
 ## How it works
@@ -77,7 +78,9 @@ This runs the type check, the unit tests and the build. Unit tests alone are `np
 
 ## Checking that it works
 
-The side panel shows four readiness lines: Firebase, App Check, Sign-in and On-device model. Paste a message, choose **Check message**, and read the badge on the result.
+### Reading a message
+
+The side panel shows four readiness lines: Firebase, App Check, Sign-in and On-device model. Paste a message into **Pasted text**, choose **Check pasted text**, and read the badge on the result.
 
 **On a laptop that can run Gemini Nano** (22 GB of free disk, and either a GPU with more than 4 GB of video memory or 16 GB of RAM with 4 cores):
 
@@ -91,6 +94,19 @@ The side panel shows four readiness lines: Firebase, App Check, Sign-in and On-d
 2. Open **What was sent to the cloud**. Names, amounts, account numbers, phone numbers, email addresses and links must appear only as placeholders such as `[NAME_1]`.
 
 Use made-up messages only.
+
+### Live captions in a meeting
+
+The extension reads captions from the meeting page and shows them in the **Live captions** card. It only reads: it does not turn captions on, record audio, or store anything.
+
+1. Load the extension first, then open or reload the meeting tab.
+2. Join a call with a second person or a second account, and turn captions on in the meeting (press C). Set the caption language to English.
+3. Open the side panel and speak. Each turn must appear once, under the speaker's name, within about 2 seconds. A sentence still being spoken is shown in a lighter colour until it is finished.
+4. Choose **Check these captions** to run the same check as for pasted text.
+
+If the card says captions are on but nothing has been read for a minute, the meeting page's markup has changed. Paste the conversation into **Pasted text** instead, one line per speaker in the form `Name: what they said`. Then update `extension/src/content/meet-selectors.ts`, which is the only file that depends on the page's markup.
+
+The meeting page has no public interface for live captions, so this reader can break when the page changes. The paste box always works.
 
 ## Data and privacy
 

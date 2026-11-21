@@ -1,6 +1,7 @@
-// The side panel for task 1: paste a message, see which pressure tactics the
-// model finds, and see where it was read. All text is set with textContent,
-// so nothing from a message or a model can run as markup.
+// The side panel so far: live captions from a meeting or pasted text go in,
+// the pressure tactics the model finds come out, with a badge that says where
+// the text was read. All text is set with textContent, so nothing from a
+// message or a model can run as markup.
 
 import { readDeviceStatus } from '../core/ai/device.ts';
 import type { DeviceStatus } from '../core/ai/device.ts';
@@ -8,10 +9,13 @@ import { aiModels } from '../core/ai/firebase-ai.ts';
 import { tacticPrompt } from '../core/ai/prompt.ts';
 import { analyse, LeakGuardError } from '../core/ai/router.ts';
 import type { Analysis } from '../core/ai/router.ts';
+import type { CaptionLine } from '../core/captions/buffer.ts';
+import { formatTranscript, parsePasted, speakerNames } from '../core/captions/paste.ts';
 import { checkAppCheck, startAppCheck } from '../core/firebase/app-check.ts';
 import { missingFirebaseConfig } from '../core/firebase/app.ts';
 import { signIn } from '../core/firebase/auth.ts';
 import { redact } from '../core/redact/redact.ts';
+import { startCaptionsPanel } from './captions-panel.ts';
 
 type State = 'ok' | 'warn' | 'bad';
 
@@ -30,6 +34,9 @@ const ui = {
   model: element('status-model'),
   download: element<HTMLButtonElement>('download'),
   downloadProgress: element('download-progress'),
+  captionsStatus: element('captions-status'),
+  captionsList: element('captions-list'),
+  captionsCheck: element<HTMLButtonElement>('captions-check'),
   message: element<HTMLTextAreaElement>('message'),
   check: element<HTMLButtonElement>('check'),
   result: element('result'),
@@ -49,6 +56,9 @@ const MODEL_TEXT: Record<DeviceStatus, { text: string; state: State }> = {
   missing: { text: 'This browser does not have it. Messages are redacted and read in the cloud', state: 'warn' },
 };
 
+let firebaseReady = false;
+let checking = false;
+
 function describe(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
@@ -66,6 +76,14 @@ function showError(text: string): void {
 function clearError(): void {
   ui.error.hidden = true;
   ui.error.textContent = '';
+}
+
+function setChecking(busy: boolean): void {
+  checking = busy;
+  ui.check.disabled = busy || !firebaseReady;
+  ui.captionsCheck.disabled = busy || !firebaseReady;
+  ui.check.textContent = busy ? 'Checking' : 'Check pasted text';
+  ui.captionsCheck.textContent = busy ? 'Checking' : 'Check these captions';
 }
 
 async function refreshModelStatus(): Promise<DeviceStatus> {
@@ -96,22 +114,26 @@ function showResult(result: Analysis): void {
   ui.result.hidden = false;
 }
 
-async function checkMessage(): Promise<void> {
-  clearError();
-  const text = ui.message.value.trim();
-  if (!text) {
-    showError('Paste a message first.');
+/** Live captions and pasted text both arrive here as the same line objects. */
+async function checkLines(lines: CaptionLine[]): Promise<void> {
+  if (checking) {
     return;
   }
-  ui.check.disabled = true;
-  ui.check.textContent = 'Checking';
+  clearError();
+  if (lines.length === 0) {
+    showError('There is nothing to check yet.');
+    return;
+  }
+  const transcript = formatTranscript(lines);
+  const names = speakerNames(lines);
+  setChecking(true);
   try {
     const models = aiModels();
-    const result = await analyse(text, {
+    const result = await analyse(transcript, {
       deviceStatus: () => readDeviceStatus(),
       onDevice: models.onDevice,
       inCloud: models.inCloud,
-      redact: (message) => redact(message),
+      redact: (message) => redact(message, names),
       buildPrompt: tacticPrompt,
     });
     showResult(result);
@@ -120,11 +142,10 @@ async function checkMessage(): Promise<void> {
     if (error instanceof LeakGuardError) {
       showError(`Stopped. The on-device call could not be confirmed to have stayed on this laptop. ${error.message}`);
     } else {
-      showError(`Could not check the message. ${describe(error)}`);
+      showError(`Could not check the text. ${describe(error)}`);
     }
   } finally {
-    ui.check.disabled = false;
-    ui.check.textContent = 'Check message';
+    setChecking(false);
     void refreshModelStatus();
   }
 }
@@ -149,8 +170,13 @@ async function downloadModel(): Promise<void> {
 }
 
 async function start(): Promise<void> {
-  ui.check.addEventListener('click', () => void checkMessage());
+  ui.check.addEventListener('click', () => void checkLines(parsePasted(ui.message.value)));
   ui.download.addEventListener('click', () => void downloadModel());
+  startCaptionsPanel(
+    { status: ui.captionsStatus, list: ui.captionsList, check: ui.captionsCheck },
+    (lines) => void checkLines(lines),
+  );
+  setChecking(false);
   void refreshModelStatus();
 
   const missing = missingFirebaseConfig();
@@ -158,10 +184,11 @@ async function start(): Promise<void> {
     setStatus(ui.firebase, `Not set up. Missing ${missing.join(', ')}. See the README`, 'bad');
     setStatus(ui.appCheck, 'Waiting for Firebase', 'warn');
     setStatus(ui.auth, 'Waiting for Firebase', 'warn');
-    ui.check.disabled = true;
     return;
   }
   setStatus(ui.firebase, 'Configured', 'ok');
+  firebaseReady = true;
+  setChecking(false);
 
   if (startAppCheck() === 'off') {
     setStatus(ui.appCheck, 'Off. No debug token is set, so cloud calls will be refused', 'bad');
