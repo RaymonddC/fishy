@@ -155,3 +155,23 @@ vite.config.ts.timestamp-*
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
+
+# FISHY: keep config templates, never real config
+!.env.example
+*.local
+
+# Firebase and Cloud Functions
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+.runtimeconfig.json
+.secret.local
+functions/lib/
+*service-account*.json
+*serviceAccount*.json
+
+# Chrome extension build output and signing keys
+*.crx
+*.pem
+release/
+*.zip
