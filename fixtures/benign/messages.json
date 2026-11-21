@@ -1,0 +1,1593 @@
+{
+  "about": "Ordinary, harmless emails and meeting snippets for measuring false alarms. Invented, and built from templates by scripts/make-fixtures.ts. Do not edit by hand.",
+  "items": [
+    {
+      "id": "bm-001",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice TP-2026-040 for May",
+      "body": "Dear Laras,\n\nPlease find attached invoice TP-2026-040 for Rp 178,400,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nYoga Permana",
+      "links": [
+        {
+          "text": "portal.tessaline-packaging.example/invoices",
+          "href": "https://portal.tessaline-packaging.example/invoices/TP-2026-040"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-002",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your May order",
+      "body": "Dear Laras,\n\nYour May order was delivered on 6 May 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-003",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, May",
+      "body": "Dear Laras,\n\nAttached is your statement of account for May. It shows invoice TP-2026-040 as open and all earlier invoices as paid.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-004",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice TP-2026-040",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 178,400,000 for invoice TP-2026-040. Thank you. No further action is needed.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-005",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice TP-2026-040 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice TP-2026-040 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-006",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice TP-2026-041 for June",
+      "body": "Dear Laras,\n\nPlease find attached invoice TP-2026-041 for Rp 181,900,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nYoga Permana",
+      "links": [
+        {
+          "text": "portal.tessaline-packaging.example/invoices",
+          "href": "https://portal.tessaline-packaging.example/invoices/TP-2026-041"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-007",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your June order",
+      "body": "Dear Laras,\n\nYour June order was delivered on 4 June 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-008",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, June",
+      "body": "Dear Laras,\n\nAttached is your statement of account for June. It shows invoice TP-2026-041 as open and all earlier invoices as paid.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-009",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice TP-2026-041",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 181,900,000 for invoice TP-2026-041. Thank you. No further action is needed.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-010",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice TP-2026-041 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice TP-2026-041 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-011",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice TP-2026-042 for July",
+      "body": "Dear Laras,\n\nPlease find attached invoice TP-2026-042 for Rp 176,250,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nYoga Permana",
+      "links": [
+        {
+          "text": "portal.tessaline-packaging.example/invoices",
+          "href": "https://portal.tessaline-packaging.example/invoices/TP-2026-042"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-012",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your July order",
+      "body": "Dear Laras,\n\nYour July order was delivered on 7 July 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-013",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, July",
+      "body": "Dear Laras,\n\nAttached is your statement of account for July. It shows invoice TP-2026-042 as open and all earlier invoices as paid.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-014",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice TP-2026-042",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 176,250,000 for invoice TP-2026-042. Thank you. No further action is needed.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-015",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice TP-2026-042 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice TP-2026-042 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-016",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice TP-2026-043 for August",
+      "body": "Dear Laras,\n\nPlease find attached invoice TP-2026-043 for Rp 184,500,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nYoga Permana",
+      "links": [
+        {
+          "text": "portal.tessaline-packaging.example/invoices",
+          "href": "https://portal.tessaline-packaging.example/invoices/TP-2026-043"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-017",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your August order",
+      "body": "Dear Laras,\n\nYour August order was delivered on 5 August 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-018",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, August",
+      "body": "Dear Laras,\n\nAttached is your statement of account for August. It shows invoice TP-2026-043 as open and all earlier invoices as paid.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-019",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice TP-2026-043",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 184,500,000 for invoice TP-2026-043. Thank you. No further action is needed.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-020",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice TP-2026-043 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice TP-2026-043 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-021",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice TP-2026-044 for September",
+      "body": "Dear Laras,\n\nPlease find attached invoice TP-2026-044 for Rp 179,800,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nYoga Permana",
+      "links": [
+        {
+          "text": "portal.tessaline-packaging.example/invoices",
+          "href": "https://portal.tessaline-packaging.example/invoices/TP-2026-044"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-022",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your September order",
+      "body": "Dear Laras,\n\nYour September order was delivered on 3 September 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-023",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, September",
+      "body": "Dear Laras,\n\nAttached is your statement of account for September. It shows invoice TP-2026-044 as open and all earlier invoices as paid.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-024",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice TP-2026-044",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 179,800,000 for invoice TP-2026-044. Thank you. No further action is needed.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-025",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice TP-2026-044 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice TP-2026-044 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-026",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice TP-2026-045 for October",
+      "body": "Dear Laras,\n\nPlease find attached invoice TP-2026-045 for Rp 183,300,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nYoga Permana",
+      "links": [
+        {
+          "text": "portal.tessaline-packaging.example/invoices",
+          "href": "https://portal.tessaline-packaging.example/invoices/TP-2026-045"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-027",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your October order",
+      "body": "Dear Laras,\n\nYour October order was delivered on 6 October 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-028",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, October",
+      "body": "Dear Laras,\n\nAttached is your statement of account for October. It shows invoice TP-2026-045 as open and all earlier invoices as paid.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-029",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice TP-2026-045",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 183,300,000 for invoice TP-2026-045. Thank you. No further action is needed.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-030",
+      "kind": "email",
+      "from": {
+        "name": "Yoga Permana",
+        "address": "yoga.permana@tessaline-packaging.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice TP-2026-045 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice TP-2026-045 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nYoga Permana",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-031",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice SC-11840 for May",
+      "body": "Dear Laras,\n\nPlease find attached invoice SC-11840 for Rp 42,600,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [
+        {
+          "text": "portal.sorelka-couriers.example/invoices",
+          "href": "https://portal.sorelka-couriers.example/invoices/SC-11840"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-032",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your May order",
+      "body": "Dear Laras,\n\nYour May order was delivered on 12 May 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-033",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, May",
+      "body": "Dear Laras,\n\nAttached is your statement of account for May. It shows invoice SC-11840 as open and all earlier invoices as paid.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-034",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice SC-11840",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 42,600,000 for invoice SC-11840. Thank you. No further action is needed.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-035",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice SC-11840 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice SC-11840 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-036",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice SC-11902 for June",
+      "body": "Dear Laras,\n\nPlease find attached invoice SC-11902 for Rp 39,850,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [
+        {
+          "text": "portal.sorelka-couriers.example/invoices",
+          "href": "https://portal.sorelka-couriers.example/invoices/SC-11902"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-037",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your June order",
+      "body": "Dear Laras,\n\nYour June order was delivered on 11 June 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-038",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, June",
+      "body": "Dear Laras,\n\nAttached is your statement of account for June. It shows invoice SC-11902 as open and all earlier invoices as paid.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-039",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice SC-11902",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 39,850,000 for invoice SC-11902. Thank you. No further action is needed.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-040",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice SC-11902 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice SC-11902 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-041",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice SC-11967 for July",
+      "body": "Dear Laras,\n\nPlease find attached invoice SC-11967 for Rp 44,100,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [
+        {
+          "text": "portal.sorelka-couriers.example/invoices",
+          "href": "https://portal.sorelka-couriers.example/invoices/SC-11967"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-042",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your July order",
+      "body": "Dear Laras,\n\nYour July order was delivered on 13 July 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-043",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, July",
+      "body": "Dear Laras,\n\nAttached is your statement of account for July. It shows invoice SC-11967 as open and all earlier invoices as paid.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-044",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice SC-11967",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 44,100,000 for invoice SC-11967. Thank you. No further action is needed.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-045",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice SC-11967 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice SC-11967 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-046",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice SC-12031 for August",
+      "body": "Dear Laras,\n\nPlease find attached invoice SC-12031 for Rp 41,250,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [
+        {
+          "text": "portal.sorelka-couriers.example/invoices",
+          "href": "https://portal.sorelka-couriers.example/invoices/SC-12031"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-047",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your August order",
+      "body": "Dear Laras,\n\nYour August order was delivered on 12 August 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-048",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, August",
+      "body": "Dear Laras,\n\nAttached is your statement of account for August. It shows invoice SC-12031 as open and all earlier invoices as paid.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-049",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice SC-12031",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 41,250,000 for invoice SC-12031. Thank you. No further action is needed.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-050",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice SC-12031 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice SC-12031 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-051",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice SC-12098 for September",
+      "body": "Dear Laras,\n\nPlease find attached invoice SC-12098 for Rp 43,700,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [
+        {
+          "text": "portal.sorelka-couriers.example/invoices",
+          "href": "https://portal.sorelka-couriers.example/invoices/SC-12098"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-052",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your September order",
+      "body": "Dear Laras,\n\nYour September order was delivered on 11 September 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-053",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, September",
+      "body": "Dear Laras,\n\nAttached is your statement of account for September. It shows invoice SC-12098 as open and all earlier invoices as paid.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-054",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice SC-12098",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 43,700,000 for invoice SC-12098. Thank you. No further action is needed.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-055",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice SC-12098 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice SC-12098 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-056",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Invoice SC-12160 for October",
+      "body": "Dear Laras,\n\nPlease find attached invoice SC-12160 for Rp 40,900,000. Payment terms are 30 days, as usual. Our bank details are unchanged.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [
+        {
+          "text": "portal.sorelka-couriers.example/invoices",
+          "href": "https://portal.sorelka-couriers.example/invoices/SC-12160"
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-057",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Delivery confirmation for your October order",
+      "body": "Dear Laras,\n\nYour October order was delivered on 12 October 2026. The signed delivery note is attached. Nothing is needed from you.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-058",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Statement of account, October",
+      "body": "Dear Laras,\n\nAttached is your statement of account for October. It shows invoice SC-12160 as open and all earlier invoices as paid.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-059",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Payment received for invoice SC-12160",
+      "body": "Dear Laras,\n\nWe have received your payment of Rp 40,900,000 for invoice SC-12160. Thank you. No further action is needed.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-060",
+      "kind": "email",
+      "from": {
+        "name": "Sorelka Couriers accounts team",
+        "address": "accounts@sorelka-couriers.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder: invoice SC-12160 is due on Friday",
+      "body": "Dear Laras,\n\nA friendly reminder that invoice SC-12160 falls due this Friday under our 30-day terms. If it is already scheduled, please ignore this note.\n\nKind regards,\nSorelka Couriers accounts team",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-061",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Month-end close for September",
+      "body": "Hi Laras,\n\nThe close for September starts on the last working day. Please have the supplier accruals ready by noon.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-062",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Expense claims: receipts needed",
+      "body": "Hi all,\n\nA reminder that expense claims for September need a receipt for every item. Claims without receipts go back to the claimant.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-063",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Supplier payment run, September",
+      "body": "Hi Laras,\n\nAs agreed with Budi in Monday's review, please schedule the Tessaline Packaging payment in this week's run, through the normal two-person approval.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-064",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Salary report for September",
+      "body": "Hi Laras,\n\nThe salary report for September is attached. Please treat it as confidential, as always, and keep it in the restricted folder.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-065",
+      "kind": "email",
+      "from": {
+        "name": "Budi Prakoso",
+        "address": "budi.prakoso@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Audit preparation",
+      "body": "Hi Laras,\n\nThe auditors will ask for the September bank reconciliations. Could you put them in the shared audit folder by the end of next week?\n\nBudi",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-066",
+      "kind": "email",
+      "from": {
+        "name": "Budi Prakoso",
+        "address": "budi.prakoso@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Budget review for September",
+      "body": "Hi both,\n\nThe budget review for September is on Thursday at ten. Please bring the variance report. No decisions on payments will be taken in the meeting.\n\nBudi",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-067",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Bank reconciliation finished",
+      "body": "Hi Budi,\n\nThe September reconciliation is finished and there are no open items.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-068",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Finance system maintenance",
+      "body": "Hi all,\n\nThe finance system will be offline on Saturday morning for maintenance. Please finish any September postings before then.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-069",
+      "kind": "email",
+      "from": {
+        "name": "Budi Prakoso",
+        "address": "budi.prakoso@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder of our payment controls",
+      "body": "Hi all,\n\nA reminder for September: a change to a supplier's bank details is only accepted after we have phoned the supplier on the number we hold on record. This applies to every request, including any that appear to come from me.\n\nBudi",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-070",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Training session next week",
+      "body": "Hi Laras,\n\nThe September training session on the new reporting template is on Tuesday afternoon. An invitation will follow.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-071",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Month-end close for October",
+      "body": "Hi Laras,\n\nThe close for October starts on the last working day. Please have the supplier accruals ready by noon.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-072",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Expense claims: receipts needed",
+      "body": "Hi all,\n\nA reminder that expense claims for October need a receipt for every item. Claims without receipts go back to the claimant.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-073",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Supplier payment run, October",
+      "body": "Hi Laras,\n\nAs agreed with Budi in Monday's review, please schedule the Tessaline Packaging payment in this week's run, through the normal two-person approval.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-074",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Salary report for October",
+      "body": "Hi Laras,\n\nThe salary report for October is attached. Please treat it as confidential, as always, and keep it in the restricted folder.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-075",
+      "kind": "email",
+      "from": {
+        "name": "Budi Prakoso",
+        "address": "budi.prakoso@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Audit preparation",
+      "body": "Hi Laras,\n\nThe auditors will ask for the October bank reconciliations. Could you put them in the shared audit folder by the end of next week?\n\nBudi",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-076",
+      "kind": "email",
+      "from": {
+        "name": "Budi Prakoso",
+        "address": "budi.prakoso@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Budget review for October",
+      "body": "Hi both,\n\nThe budget review for October is on Thursday at ten. Please bring the variance report. No decisions on payments will be taken in the meeting.\n\nBudi",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-077",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Bank reconciliation finished",
+      "body": "Hi Budi,\n\nThe October reconciliation is finished and there are no open items.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-078",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Finance system maintenance",
+      "body": "Hi all,\n\nThe finance system will be offline on Saturday morning for maintenance. Please finish any October postings before then.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-079",
+      "kind": "email",
+      "from": {
+        "name": "Budi Prakoso",
+        "address": "budi.prakoso@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Reminder of our payment controls",
+      "body": "Hi all,\n\nA reminder for October: a change to a supplier's bank details is only accepted after we have phoned the supplier on the number we hold on record. This applies to every request, including any that appear to come from me.\n\nBudi",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-080",
+      "kind": "email",
+      "from": {
+        "name": "Bayu Wicaksana",
+        "address": "bayu.wicaksana@ombakura-freight.example"
+      },
+      "to": "laras.pramesti@ombakura-freight.example",
+      "subject": "Training session next week",
+      "body": "Hi Laras,\n\nThe October training session on the new reporting template is on Tuesday afternoon. An invitation will follow.\n\nBayu",
+      "links": [],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-081",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "Let us start with the August numbers. Spending is two percent under budget."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "Packaging costs are flat and courier costs are slightly down."
+        },
+        {
+          "speaker": "Budi Prakoso",
+          "text": "Good. Nothing to change, then."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-082",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Laras Pramesti",
+          "text": "All August supplier invoices are booked. Two are waiting for a second approval."
+        },
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "I will approve them this afternoon once I have checked the delivery notes."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-083",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Budi Prakoso",
+          "text": "For the August forecast, please assume the same payment terms as last quarter."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "Understood. I will send the updated forecast tomorrow."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-084",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "The auditors arrive in the second week after August. Are the reconciliations ready?"
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "They are in the shared folder, and the bank statements are attached to each one."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-085",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Budi Prakoso",
+          "text": "This one is urgent for me: I need the August variance report before the board meeting."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "You will have it by noon. It goes through the normal review with Bayu first."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-086",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "Tessaline Packaging asked whether we could pay the August invoice a week early."
+        },
+        {
+          "speaker": "Budi Prakoso",
+          "text": "No need. Pay it on the due date to the account we have on record, as usual."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "Scheduled for the due date."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-087",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Laras Pramesti",
+          "text": "The August salary figures are confidential, so I have limited the folder to the three of us."
+        },
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "That is right. Thank you."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-088",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Budi Prakoso",
+          "text": "Any questions about the August close?"
+        },
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "None from me. It ran a day ahead of schedule."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-089",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "Let us start with the September numbers. Spending is two percent under budget."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "Packaging costs are flat and courier costs are slightly down."
+        },
+        {
+          "speaker": "Budi Prakoso",
+          "text": "Good. Nothing to change, then."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-090",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Laras Pramesti",
+          "text": "All September supplier invoices are booked. Two are waiting for a second approval."
+        },
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "I will approve them this afternoon once I have checked the delivery notes."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-091",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Budi Prakoso",
+          "text": "For the September forecast, please assume the same payment terms as last quarter."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "Understood. I will send the updated forecast tomorrow."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-092",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "The auditors arrive in the second week after September. Are the reconciliations ready?"
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "They are in the shared folder, and the bank statements are attached to each one."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-093",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Budi Prakoso",
+          "text": "This one is urgent for me: I need the September variance report before the board meeting."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "You will have it by noon. It goes through the normal review with Bayu first."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-094",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "Tessaline Packaging asked whether we could pay the September invoice a week early."
+        },
+        {
+          "speaker": "Budi Prakoso",
+          "text": "No need. Pay it on the due date to the account we have on record, as usual."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "Scheduled for the due date."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-095",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Laras Pramesti",
+          "text": "The September salary figures are confidential, so I have limited the folder to the three of us."
+        },
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "That is right. Thank you."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-096",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Budi Prakoso",
+          "text": "Any questions about the September close?"
+        },
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "None from me. It ran a day ahead of schedule."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-097",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "Let us start with the October numbers. Spending is two percent under budget."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "Packaging costs are flat and courier costs are slightly down."
+        },
+        {
+          "speaker": "Budi Prakoso",
+          "text": "Good. Nothing to change, then."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-098",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Laras Pramesti",
+          "text": "All October supplier invoices are booked. Two are waiting for a second approval."
+        },
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "I will approve them this afternoon once I have checked the delivery notes."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-099",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Budi Prakoso",
+          "text": "For the October forecast, please assume the same payment terms as last quarter."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "Understood. I will send the updated forecast tomorrow."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-100",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "The auditors arrive in the second week after October. Are the reconciliations ready?"
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "They are in the shared folder, and the bank statements are attached to each one."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    },
+    {
+      "id": "bm-101",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Budi Prakoso",
+          "text": "This one is urgent for me: I need the October variance report before the board meeting."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "You will have it by noon. It goes through the normal review with Bayu first."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-102",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "Tessaline Packaging asked whether we could pay the October invoice a week early."
+        },
+        {
+          "speaker": "Budi Prakoso",
+          "text": "No need. Pay it on the due date to the account we have on record, as usual."
+        },
+        {
+          "speaker": "Laras Pramesti",
+          "text": "Scheduled for the due date."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-103",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Laras Pramesti",
+          "text": "The October salary figures are confidential, so I have limited the folder to the three of us."
+        },
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "That is right. Thank you."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": true
+    },
+    {
+      "id": "bm-104",
+      "kind": "meeting",
+      "lines": [
+        {
+          "speaker": "Budi Prakoso",
+          "text": "Any questions about the October close?"
+        },
+        {
+          "speaker": "Bayu Wicaksana",
+          "text": "None from me. It ran a day ahead of schedule."
+        }
+      ],
+      "expected": "not_fishy",
+      "hard": false
+    }
+  ]
+}

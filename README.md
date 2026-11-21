@@ -15,6 +15,7 @@ In progress. The build runs from 22 to 30 November 2026, and this README is upda
 | Task 1: a message is read by Gemini Nano in the side panel, or in the cloud after redaction | Code and automated tests done. Not yet confirmed on a real laptop |
 | Task 2: live meeting captions reach the side panel, with pasted text as the fallback | Code and automated tests done. Not yet confirmed in a real meeting |
 | Task 3: a Cloud Function phones the number on record (press 1 or 2, then a PIN), with a web approval page for judges | Code and automated tests done. Not yet deployed or tried on a real phone |
+| Task 4: demo fixtures for one fictional company, and a seed script | Done. The checks run with the unit tests |
 | Everything else | Not started |
 
 ## How it works
@@ -75,7 +76,7 @@ After a code change, run the build again and press the reload button on the exte
 npm run check
 ```
 
-This runs the type check, the unit tests and the build. Unit tests alone are `npm test`; they need nothing installed beyond Node.js.
+This runs the type checks, the unit tests, the fixture checks and the builds. The generated fixtures (two invoice PDFs and the benign set) are rebuilt with `npm run fixtures`; a check fails if they are out of date.
 
 ## Checking that it works
 
@@ -149,11 +150,13 @@ Deploy the Functions, the Firestore rules and the approval page:
 npx firebase-tools deploy --only functions,firestore:rules,hosting
 ```
 
-Add the demo person. The number and PIN are read from the environment and are not written to any file here. Use a number you have verified with the phone provider and a made-up PIN. This needs Google application default credentials for the project.
+Load the fictional company: the directory, the suppliers and the known-bad list. Phone numbers and the PIN are read from the environment and are not written to any file here. Use numbers you have verified with the phone provider and a made-up PIN. This needs Google application default credentials for the project.
 
 ```bash
-SEED_PROJECT_ID=YOUR_PROJECT_ID SEED_PHONE=+00000000000 SEED_PIN=0000 node functions/scripts/seed-person.ts
+SEED_PROJECT_ID=YOUR_PROJECT_ID SEED_PHONES='{"budi":"+00000000000","bayu":"+00000000000"}' SEED_PIN=0000 npm run seed
 ```
+
+Add `-- --dry-run` to see what would be written, with the numbers masked. Staff with no number given are left out of the directory.
 
 Then check it, in this order:
 
@@ -166,7 +169,7 @@ The phone provider's call log records the keys that were pressed, including the 
 
 ## Data and privacy
 
-- All demo data is synthetic: one fictional company, its staff and its suppliers.
+- All demo data is synthetic: one fictional company, its staff and its suppliers. It lives in `fixtures/`, and the checks refuse any domain that is not reserved for examples and any phone number outside the range reserved for fiction. The demo stories are described in [docs/DEMO.md](docs/DEMO.md).
 - No message text is stored. The team sees a summary only.
 - This repository contains no keys, secrets or personal data. Configuration is read from local files that are not committed; a template will be provided as `.env.example`.
 

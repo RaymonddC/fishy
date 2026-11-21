@@ -147,7 +147,7 @@ test('the answer never contains the phone number or the PIN record', async () =>
 
   assert.ok(!text.includes(BUDI_PHONE));
   assert.ok(!text.includes('0143'), 'only the last two digits may appear');
-  assert.equal(result.person.name, 'Budi Santoso');
+  assert.equal(result.person.name, 'Budi Prakoso');
   assert.equal(result.person.maskedPhone, `${'•'.repeat(9)}43`);
   assert.ok(!text.includes('salt'));
 });

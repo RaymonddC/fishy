@@ -39,7 +39,7 @@ export function formatTranscript(lines: readonly CaptionLine[]): string {
 
 /**
  * The names to remove before a transcript may go to the cloud: each speaker's
- * full name and each part of it, so "Budi" is removed as well as "Budi Santoso".
+ * full name and each part of it, so "Budi" is removed as well as "Budi Prakoso".
  */
 export function speakerNames(lines: readonly CaptionLine[]): string[] {
   const names = new Set<string>();

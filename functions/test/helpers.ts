@@ -16,7 +16,7 @@ export const BUDI_PIN = '4821';
 export const NOW = 1_800_000_000_000;
 
 export function budi(): Person {
-  return { id: 'budi', name: 'Budi Santoso', role: 'CFO', phone: BUDI_PHONE, pin: hashPin(BUDI_PIN, 'test-salt') };
+  return { id: 'budi', name: 'Budi Prakoso', role: 'CFO', phone: BUDI_PHONE, pin: hashPin(BUDI_PIN, 'test-salt') };
 }
 
 export class MemoryStore implements Store {

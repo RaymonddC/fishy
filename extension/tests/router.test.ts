@@ -17,16 +17,16 @@ import { redact } from '../src/core/redact/redact.ts';
 // Synthetic message. Names, numbers and domains are invented; the phone
 // number is in a range reserved for fiction.
 const MESSAGE =
-  'This is Budi Santoso. Transfer Rp 2.400.000.000 to account 1234567890 today. ' +
+  'This is Budi Prakoso. Transfer Rp 2.400.000.000 to account 1234567890 today. ' +
   'Keep this confidential and do not tell anyone. ' +
   'Reply to budi@example-freight.example or call +1 202 555 0143. ' +
   'Details: https://pay.example-freight.example/inv/8841';
 
-const KNOWN_NAMES = ['Budi Santoso', 'Budi'];
+const KNOWN_NAMES = ['Budi Prakoso', 'Budi'];
 
 const SECRETS = [
   'Budi',
-  'Santoso',
+  'Prakoso',
   '2.400.000.000',
   '1234567890',
   'budi@example-freight.example',

@@ -1,0 +1,40 @@
+{
+  "about": "The starting list of confirmed bad details for the fictional company. Invented accounts and domains. The phone number is in the range reserved for fiction.",
+  "entries": [
+    {
+      "type": "account",
+      "value": "9920584416",
+      "seenCount": 2,
+      "firstSeen": "2026-10-02",
+      "note": "Sent as a supplier's new bank account. The supplier confirmed it is not theirs."
+    },
+    {
+      "type": "account",
+      "value": "5571903328",
+      "seenCount": 4,
+      "firstSeen": "2026-07-21",
+      "note": "Used in four requests that claimed to come from an executive."
+    },
+    {
+      "type": "domain",
+      "value": "tessaline-packagings.example",
+      "seenCount": 1,
+      "firstSeen": "2026-10-02",
+      "note": "Lookalike of a supplier's domain."
+    },
+    {
+      "type": "domain",
+      "value": "0mbakura-freight.example",
+      "seenCount": 3,
+      "firstSeen": "2026-08-14",
+      "note": "Lookalike of the company's own domain."
+    },
+    {
+      "type": "number",
+      "value": "+12025550162",
+      "seenCount": 1,
+      "firstSeen": "2026-09-30",
+      "note": "A caller who claimed to be a supplier's accounts team."
+    }
+  ]
+}

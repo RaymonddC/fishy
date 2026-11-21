@@ -9,7 +9,7 @@ import { test } from 'node:test';
 import { bannerFor } from '../src/core/call/banner.ts';
 import type { CheckView } from '../src/core/call/banner.ts';
 
-const BUDI = { name: 'Budi Santoso', maskedPhone: '•••••••••43' };
+const BUDI = { name: 'Budi Prakoso', maskedPhone: '•••••••••43' };
 
 const check = (overrides: Partial<CheckView>): CheckView => ({
   status: 'waiting',
@@ -24,7 +24,7 @@ test('pressing 2 turns the banner red and says not to pay', () => {
 
   assert.equal(banner.tone, 'red');
   assert.match(banner.title, /do not pay/i);
-  assert.match(banner.detail, /Budi Santoso/);
+  assert.match(banner.detail, /Budi Prakoso/);
 });
 
 test('a denial confirmed with the PIN says so', () => {

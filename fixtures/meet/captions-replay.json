@@ -1,0 +1,15 @@
+{
+  "about": "The fake CFO story as timed caption lines, for replaying the meeting without a live call. Invented people and details. The words match fixtures/meet/cfo-script.md.",
+  "lines": [
+    { "atMs": 0, "speaker": "Budi Prakoso", "text": "Laras, thanks for joining at short notice. I only have a few minutes before I board." },
+    { "atMs": 6000, "speaker": "Laras Pramesti", "text": "Of course. What do you need?" },
+    { "atMs": 9000, "speaker": "Budi Prakoso", "text": "We are closing an acquisition this week and it is strictly confidential. Only the board and I know about it." },
+    { "atMs": 17000, "speaker": "Budi Prakoso", "text": "I need you to send a payment of 2.4 billion rupiah to Tessaline Packaging today, before four o'clock." },
+    { "atMs": 25000, "speaker": "Laras Pramesti", "text": "That is far more than their usual invoices. Is it going to the account we have on file?" },
+    { "atMs": 31000, "speaker": "Budi Prakoso", "text": "No, they changed banks. Use the new account on the invoice they sent this morning, the one ending 4416." },
+    { "atMs": 39000, "speaker": "Laras Pramesti", "text": "A change of bank details normally has to be confirmed with the supplier first." },
+    { "atMs": 45000, "speaker": "Budi Prakoso", "text": "There is no time for that. I am the CFO and I am authorising it now, so skip the usual checks." },
+    { "atMs": 52000, "speaker": "Budi Prakoso", "text": "And keep this between us. Do not mention it to Bayu or anyone else until the deal is announced." },
+    { "atMs": 59000, "speaker": "Laras Pramesti", "text": "Understood. Let me check one thing before I send it." }
+  ]
+}

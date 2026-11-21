@@ -32,7 +32,7 @@ test('replaces account numbers, with or without separators', () => {
 });
 
 test('replaces known names as whole words, whatever the case', () => {
-  const out = redact('BUDI SANTOSO asked. Budi insists. Budiman is someone else.', ['Budi Santoso', 'Budi']);
+  const out = redact('BUDI PRAKOSO asked. Budi insists. Budiman is someone else.', ['Budi Prakoso', 'Budi']);
   assert.equal(out.text, '[NAME_1] asked. [NAME_2] insists. Budiman is someone else.');
 });
 
@@ -47,9 +47,9 @@ test('keeps the pressure wording', () => {
 });
 
 test('redacting twice changes nothing more', () => {
-  const names = ['Budi Santoso', 'Budi'];
+  const names = ['Budi Prakoso', 'Budi'];
   const once = redact(
-    'Budi Santoso: pay Rp 2.400.000.000 to 1234567890, see https://pay.example-freight.example/x, mail budi@example-freight.example, call +1 202 555 0143.',
+    'Budi Prakoso: pay Rp 2.400.000.000 to 1234567890, see https://pay.example-freight.example/x, mail budi@example-freight.example, call +1 202 555 0143.',
     names,
   );
   const twice = redact(once.text, names);
@@ -66,17 +66,17 @@ test('reports how many details were removed, by kind', () => {
 // reach the cloud whenever nobody had listed it first.
 
 test('removes capitalised names in the middle of a sentence', () => {
-  const out = redact('Please call Rina Wijaya about this. Then ask Rina again.');
+  const out = redact('Please call Yoga Permana about this. Then ask Yoga again.');
   assert.equal(out.text, 'Please call [NAME_1] about this. Then ask [NAME_2] again.');
 });
 
 test('removes a full name at the start of a sentence', () => {
-  const out = redact('Budi Santoso here. Send it now.');
+  const out = redact('Budi Prakoso here. Send it now.');
   assert.equal(out.text, '[NAME_1] here. Send it now.');
 });
 
 test('removes a name after a greeting or a title', () => {
-  const out = redact('Hi Budi, as agreed. Dear Mr Santoso, see below. From: Example Freight');
+  const out = redact('Hi Budi, as agreed. Dear Mr Prakoso, see below. From: Example Freight');
   assert.equal(out.text, 'Hi [NAME_1], as agreed. Dear [NAME_2], see below. From: [NAME_3]');
 });
 
@@ -87,6 +87,6 @@ test('keeps sentence openers, roles, days, months and acronyms', () => {
 });
 
 test('keeps a role but removes the name beside it', () => {
-  const out = redact('Ask the Finance Director Budi Santoso first.');
+  const out = redact('Ask the Finance Director Budi Prakoso first.');
   assert.equal(out.text, 'Ask the Finance Director [NAME_1] first.');
 });

@@ -12,9 +12,14 @@
     "node": ">=22.18"
   },
   "scripts": {
-    "test": "node --test \"extension/tests/**/*.test.ts\" \"functions/test/**/*.test.ts\"",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "node --test \"extension/tests/**/*.test.ts\" \"functions/test/**/*.test.ts\" \"scripts/tests/**/*.test.ts\"",
+    "typecheck": "npm run typecheck --workspaces --if-present && tsc --noEmit -p scripts/tsconfig.json",
     "build": "npm run build --workspaces --if-present",
-    "check": "npm run typecheck && npm test && npm run build"
+    "check": "npm run typecheck && npm test && npm run build",
+    "fixtures": "node scripts/make-fixtures.ts",
+    "seed": "node scripts/seed.ts"
+  },
+  "devDependencies": {
+    "pdf-lib": "^1.17.1"
   }
 }

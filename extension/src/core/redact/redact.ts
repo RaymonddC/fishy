@@ -144,7 +144,7 @@ function namePattern(names: readonly string[]): RegExp | null {
   if (cleaned.length === 0) {
     return null;
   }
-  // Longest first, so "Budi Santoso" is taken whole before "Budi" alone.
+  // Longest first, so "Budi Prakoso" is taken whole before "Budi" alone.
   cleaned.sort((a, b) => b.length - a.length);
   const alternatives = cleaned.map(escapeForPattern).join('|');
   return new RegExp(String.raw`(?<![\p{L}\p{N}])(?:${alternatives})(?![\p{L}\p{N}])`, 'giu');

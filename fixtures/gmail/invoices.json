@@ -1,0 +1,50 @@
+{
+  "about": "The two invoices for the second demo story. Invented supplier, bank and accounts. The PDF files next to this file are built from these values by scripts/make-fixtures.ts.",
+  "genuine": {
+    "supplierId": "tessaline",
+    "invoiceNumber": "TP-2026-046",
+    "issueDate": "2026-11-03",
+    "dueDate": "2026-12-03",
+    "currency": "IDR",
+    "amount": 186200000,
+    "billTo": "Ombakura Freight",
+    "lines": [
+      { "description": "Corrugated shipping cartons, large", "quantity": 9200, "unitPrice": 14500 },
+      { "description": "Stretch film, 500 m rolls", "quantity": 640, "unitPrice": 82500 }
+    ],
+    "bank": {
+      "bankName": "First Example Bank",
+      "accountName": "Tessaline Packaging",
+      "accountNumber": "4410027731"
+    },
+    "pdf": {
+      "file": "invoice-genuine.pdf",
+      "producer": "Tessaline Billing 4.2",
+      "createdAt": "2026-11-03T02:10:00.000Z",
+      "modifiedAt": "2026-11-03T02:10:00.000Z"
+    }
+  },
+  "fake": {
+    "supplierId": "tessaline",
+    "invoiceNumber": "TP-2026-047",
+    "issueDate": "2026-11-18",
+    "dueDate": "2026-11-20",
+    "currency": "IDR",
+    "amount": 2400000000,
+    "billTo": "Ombakura Freight",
+    "lines": [
+      { "description": "Annual packaging supply, advance payment", "quantity": 1, "unitPrice": 2400000000 }
+    ],
+    "bank": {
+      "bankName": "Harbour Example Bank",
+      "accountName": "Tessaline Packaging Intl",
+      "accountNumber": "9920584416"
+    },
+    "pdf": {
+      "file": "invoice-fake.pdf",
+      "producer": "Quick PDF Editor",
+      "createdAt": "2026-11-03T02:10:00.000Z",
+      "modifiedAt": "2026-11-18T01:47:00.000Z"
+    }
+  }
+}

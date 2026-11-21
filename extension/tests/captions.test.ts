@@ -67,8 +67,8 @@ test('reads the speaker and the text of each caption block', () => {
   assert.deepEqual(
     blocks.map(({ speaker, text }) => ({ speaker, text })),
     [
-      { speaker: 'Budi Santoso', text: 'Dewi, I need you to do something for me right now.' },
-      { speaker: 'Dewi Lestari', text: 'Of course. What do you' },
+      { speaker: 'Budi Prakoso', text: 'Laras, I need you to do something for me right now.' },
+      { speaker: 'Laras Pramesti', text: 'Of course. What do you' },
     ],
   );
   assert.notEqual(blocks[0]?.key, blocks[1]?.key);
@@ -96,8 +96,8 @@ test('reads blocks by their shape when the class names have changed', () => {
   assert.deepEqual(
     blocks.map(({ speaker, text }) => ({ speaker, text })),
     [
-      { speaker: 'Budi Santoso', text: 'Dewi, I need you to do something for me right now.' },
-      { speaker: 'Dewi Lestari', text: 'Of course. What do you' },
+      { speaker: 'Budi Prakoso', text: 'Laras, I need you to do something for me right now.' },
+      { speaker: 'Laras Pramesti', text: 'Of course. What do you' },
     ],
   );
 });
@@ -123,15 +123,15 @@ test('in-place edits and a new speaker give one line per spoken turn', async () 
   const region = findCaptionsRegion(document);
   assert.ok(region);
   const third = region.children[0]?.cloneNode(true) as Element;
-  third.querySelector('.NWpY1d')!.textContent = 'Budi Santoso';
+  third.querySelector('.NWpY1d')!.textContent = 'Budi Prakoso';
   third.querySelector('.ygicle')!.textContent = 'Wire the payment today and keep it between us.';
   region.append(third);
   await settle();
 
   assert.deepEqual(watcher.snapshot().lines, [
-    { id: 'c1', speaker: 'Budi Santoso', text: 'Dewi, I need you to do something for me right now.', final: true },
-    { id: 'c2', speaker: 'Dewi Lestari', text: 'Of course. What do you need?', final: true },
-    { id: 'c3', speaker: 'Budi Santoso', text: 'Wire the payment today and keep it between us.', final: false },
+    { id: 'c1', speaker: 'Budi Prakoso', text: 'Laras, I need you to do something for me right now.', final: true },
+    { id: 'c2', speaker: 'Laras Pramesti', text: 'Of course. What do you need?', final: true },
+    { id: 'c3', speaker: 'Budi Prakoso', text: 'Wire the payment today and keep it between us.', final: false },
   ]);
   watcher.stop();
 });
@@ -151,7 +151,7 @@ test('the watcher reports only the lines that changed', async () => {
   assert.equal(updates.length, 2);
   assert.deepEqual(updates[1], {
     status: 'live',
-    lines: [{ id: 'c2', speaker: 'Dewi Lestari', text: 'Of course. What do you need?', final: false }],
+    lines: [{ id: 'c2', speaker: 'Laras Pramesti', text: 'Of course. What do you need?', final: false }],
   });
   watcher.stop();
 });
@@ -185,7 +185,7 @@ test('the watcher follows the page when it rebuilds the captions region, without
 
   assert.deepEqual(
     watcher.snapshot().lines.map((line) => line.text),
-    ['Dewi, I need you to do something for me right now.', 'Of course. What do you need?'],
+    ['Laras, I need you to do something for me right now.', 'Of course. What do you need?'],
   );
   watcher.stop();
 });
@@ -199,7 +199,7 @@ test('a quiet line becomes final when the watcher ticks', () => {
 
   assert.deepEqual(updates.at(-1), {
     status: 'live',
-    lines: [{ id: 'c2', speaker: 'Dewi Lestari', text: 'Of course. What do you', final: true }],
+    lines: [{ id: 'c2', speaker: 'Laras Pramesti', text: 'Of course. What do you', final: true }],
   });
   watcher.stop();
 });

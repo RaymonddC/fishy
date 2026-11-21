@@ -1,0 +1,71 @@
+{
+  "about": "Synthetic demo data. Every company, person, bank, account and address in this file is invented. Phone numbers are not kept here: they are supplied when the seed script runs.",
+  "company": {
+    "id": "ombakura",
+    "name": "Ombakura Freight",
+    "domain": "ombakura-freight.example"
+  },
+  "staff": [
+    {
+      "id": "budi",
+      "name": "Budi Prakoso",
+      "role": "CFO",
+      "email": "budi.prakoso@ombakura-freight.example",
+      "approverOrder": 1
+    },
+    {
+      "id": "bayu",
+      "name": "Bayu Wicaksana",
+      "role": "Finance manager",
+      "email": "bayu.wicaksana@ombakura-freight.example",
+      "approverOrder": 2
+    },
+    {
+      "id": "laras",
+      "name": "Laras Pramesti",
+      "role": "Finance officer",
+      "email": "laras.pramesti@ombakura-freight.example",
+      "approverOrder": null
+    }
+  ],
+  "suppliers": [
+    {
+      "id": "tessaline",
+      "name": "Tessaline Packaging",
+      "domain": "tessaline-packaging.example",
+      "contact": { "name": "Yoga Permana", "email": "yoga.permana@tessaline-packaging.example" },
+      "bank": {
+        "bankName": "First Example Bank",
+        "accountName": "Tessaline Packaging",
+        "accountNumber": "4410027731"
+      },
+      "invoiceHistory": [
+        { "invoiceNumber": "TP-2026-040", "date": "2026-05-06", "amount": 178400000, "currency": "IDR", "bankName": "First Example Bank", "accountNumber": "4410027731" },
+        { "invoiceNumber": "TP-2026-041", "date": "2026-06-04", "amount": 181900000, "currency": "IDR", "bankName": "First Example Bank", "accountNumber": "4410027731" },
+        { "invoiceNumber": "TP-2026-042", "date": "2026-07-07", "amount": 176250000, "currency": "IDR", "bankName": "First Example Bank", "accountNumber": "4410027731" },
+        { "invoiceNumber": "TP-2026-043", "date": "2026-08-05", "amount": 184500000, "currency": "IDR", "bankName": "First Example Bank", "accountNumber": "4410027731" },
+        { "invoiceNumber": "TP-2026-044", "date": "2026-09-03", "amount": 179800000, "currency": "IDR", "bankName": "First Example Bank", "accountNumber": "4410027731" },
+        { "invoiceNumber": "TP-2026-045", "date": "2026-10-06", "amount": 183300000, "currency": "IDR", "bankName": "First Example Bank", "accountNumber": "4410027731" }
+      ]
+    },
+    {
+      "id": "sorelka",
+      "name": "Sorelka Couriers",
+      "domain": "sorelka-couriers.example",
+      "contact": { "name": "Sorelka Couriers accounts team", "email": "accounts@sorelka-couriers.example" },
+      "bank": {
+        "bankName": "Harbour Example Bank",
+        "accountName": "Sorelka Couriers",
+        "accountNumber": "7302259164"
+      },
+      "invoiceHistory": [
+        { "invoiceNumber": "SC-11840", "date": "2026-05-12", "amount": 42600000, "currency": "IDR", "bankName": "Harbour Example Bank", "accountNumber": "7302259164" },
+        { "invoiceNumber": "SC-11902", "date": "2026-06-11", "amount": 39850000, "currency": "IDR", "bankName": "Harbour Example Bank", "accountNumber": "7302259164" },
+        { "invoiceNumber": "SC-11967", "date": "2026-07-13", "amount": 44100000, "currency": "IDR", "bankName": "Harbour Example Bank", "accountNumber": "7302259164" },
+        { "invoiceNumber": "SC-12031", "date": "2026-08-12", "amount": 41250000, "currency": "IDR", "bankName": "Harbour Example Bank", "accountNumber": "7302259164" },
+        { "invoiceNumber": "SC-12098", "date": "2026-09-11", "amount": 43700000, "currency": "IDR", "bankName": "Harbour Example Bank", "accountNumber": "7302259164" },
+        { "invoiceNumber": "SC-12160", "date": "2026-10-12", "amount": 40900000, "currency": "IDR", "bankName": "Harbour Example Bank", "accountNumber": "7302259164" }
+      ]
+    }
+  ]
+}

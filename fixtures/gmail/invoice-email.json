@@ -1,0 +1,16 @@
+{
+  "about": "The fake supplier email for the second demo story. Invented people, companies, bank and account. The sender's domain is a lookalike of the supplier's: one extra letter.",
+  "from": { "name": "Yoga Permana", "address": "yoga.permana@tessaline-packagings.example" },
+  "replyTo": "accounts@tessaline-packagings.example",
+  "to": [{ "name": "Laras Pramesti", "address": "laras.pramesti@ombakura-freight.example" }],
+  "subject": "Invoice TP-2026-047 and our new bank details",
+  "sentAt": "2026-11-18T09:12:00+07:00",
+  "bodyText": "Dear Laras,\n\nPlease find attached invoice TP-2026-047 for Rp 2,400,000,000, the advance payment for next year's packaging supply.\n\nPlease note that we have moved our accounts to Harbour Example Bank. Our new account number is 9920584416, in the name of Tessaline Packaging Intl. Kindly update your records and send this payment to the new account. The old account is being closed and payments sent there will be returned.\n\nTo keep your December shipments on schedule, payment must reach us within two days. You can confirm the new details on our portal using the link below.\n\nKind regards,\nYoga Permana\nAccounts, Tessaline Packaging",
+  "links": [
+    {
+      "text": "portal.tessaline-packaging.example/invoices",
+      "href": "https://portal.tessaline-packagings.example/invoices/TP-2026-047"
+    }
+  ],
+  "attachments": [{ "filename": "invoice-TP-2026-047.pdf", "fixture": "invoice-fake.pdf" }]
+}

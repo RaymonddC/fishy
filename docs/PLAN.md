@@ -336,7 +336,7 @@ Each has a default so that nothing waits.
 | A domain the team owns, to send the lookalike email for the video | Without one, the email story is shown through "Run demo" |
 | How judges' copies pass App Check | Decided in task 1: token-minting Function if it works, otherwise a debug token in the release zip only |
 | Team alert in or out | Out, below the line |
-| Name of the fictional company | Chosen in task 4, after checking it is not a real company |
+| Name of the fictional company | Decided in task 4: Ombakura Freight. A search on 21 November 2026 found no company of that name |
 | R8 and R9 against the rules | Not started until the rules text is read |
 
 ## 11. Facts checked on 21 November 2026

@@ -1,0 +1,53 @@
+{
+  "about": "Test set for the lookalike-domain check. Every domain here is under a top-level name reserved for examples and tests, so none of them can exist. The list was written by hand, technique by technique, so that it does not mirror the code that has to catch it.",
+  "genuine": [
+    "ombakura-freight.example",
+    "tessaline-packaging.example",
+    "sorelka-couriers.example",
+    "portal.tessaline-packaging.example",
+    "mail.ombakura-freight.example"
+  ],
+  "unrelated": [
+    "city-water-utility.example",
+    "regional-tax-office.example",
+    "quarterly-newsletter.example",
+    "harbour-example-bank.example",
+    "first-example-bank.example"
+  ],
+  "lookalikes": [
+    { "domain": "tessaline-packagings.example", "target": "tessaline-packaging.example", "technique": "added letter" },
+    { "domain": "tessaline-packagin.example", "target": "tessaline-packaging.example", "technique": "dropped letter" },
+    { "domain": "tessa1ine-packaging.example", "target": "tessaline-packaging.example", "technique": "digit for a letter" },
+    { "domain": "tessaiine-packaging.example", "target": "tessaline-packaging.example", "technique": "look-alike letter" },
+    { "domain": "tessaline-packaqing.example", "target": "tessaline-packaging.example", "technique": "look-alike letter" },
+    { "domain": "tesaline-packaging.example", "target": "tessaline-packaging.example", "technique": "dropped double letter" },
+    { "domain": "tessalline-packaging.example", "target": "tessaline-packaging.example", "technique": "doubled letter" },
+    { "domain": "tessaline-pakcaging.example", "target": "tessaline-packaging.example", "technique": "swapped neighbours" },
+    { "domain": "tessalinepackaging.example", "target": "tessaline-packaging.example", "technique": "hyphen removed" },
+    { "domain": "tessaline.packaging.example", "target": "tessaline-packaging.example", "technique": "dot for the hyphen" },
+    { "domain": "tessaline-packaging-billing.example", "target": "tessaline-packaging.example", "technique": "extra word after" },
+    { "domain": "billing-tessaline-packaging.example", "target": "tessaline-packaging.example", "technique": "extra word before" },
+    { "domain": "tessaline-packaging.test", "target": "tessaline-packaging.example", "technique": "changed ending" },
+    { "domain": "tessaline-packaging.example.invalid", "target": "tessaline-packaging.example", "technique": "genuine name inside another domain" },
+    { "domain": "xn--tessline-packaging-uwo.example", "target": "tessaline-packaging.example", "technique": "letter from another alphabet, in encoded form" },
+    { "domain": "0mbakura-freight.example", "target": "ombakura-freight.example", "technique": "digit for a letter" },
+    { "domain": "ornbakura-freight.example", "target": "ombakura-freight.example", "technique": "two letters that look like one" },
+    { "domain": "ombakvra-freight.example", "target": "ombakura-freight.example", "technique": "look-alike letter" },
+    { "domain": "ombakura-frieght.example", "target": "ombakura-freight.example", "technique": "swapped neighbours" },
+    { "domain": "ombakura-freigth.example", "target": "ombakura-freight.example", "technique": "swapped neighbours" },
+    { "domain": "ombakura-freights.example", "target": "ombakura-freight.example", "technique": "added letter" },
+    { "domain": "ombakuura-freight.example", "target": "ombakura-freight.example", "technique": "doubled letter" },
+    { "domain": "ombakurafreight.example", "target": "ombakura-freight.example", "technique": "hyphen removed" },
+    { "domain": "ombakura.freight.example", "target": "ombakura-freight.example", "technique": "dot for the hyphen" },
+    { "domain": "ombakura-freight-finance.example", "target": "ombakura-freight.example", "technique": "extra word after" },
+    { "domain": "cfo-ombakura-freight.example", "target": "ombakura-freight.example", "technique": "extra word before" },
+    { "domain": "ombakura-freight.test", "target": "ombakura-freight.example", "technique": "changed ending" },
+    { "domain": "sorelka-courriers.example", "target": "sorelka-couriers.example", "technique": "doubled letter" },
+    { "domain": "sorelka-courier.example", "target": "sorelka-couriers.example", "technique": "dropped letter" },
+    { "domain": "s0relka-couriers.example", "target": "sorelka-couriers.example", "technique": "digit for a letter" },
+    { "domain": "soreika-couriers.example", "target": "sorelka-couriers.example", "technique": "look-alike letter" },
+    { "domain": "sorelkacouriers.example", "target": "sorelka-couriers.example", "technique": "hyphen removed" },
+    { "domain": "sorelka-couriers-payments.example", "target": "sorelka-couriers.example", "technique": "extra word after" },
+    { "domain": "sorelka-couriers.example.test", "target": "sorelka-couriers.example", "technique": "genuine name inside another domain" }
+  ]
+}

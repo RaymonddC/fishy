@@ -114,7 +114,7 @@ test('opening the page shows who is being asked, and nothing private', async () 
   const reply = await send(h, { action: 'open' });
 
   assert.equal(reply.status, 200);
-  assert.deepEqual(reply.json, { step: 'choice', result: null, person: { name: 'Budi Santoso', role: 'CFO' } });
+  assert.deepEqual(reply.json, { step: 'choice', result: null, person: { name: 'Budi Prakoso', role: 'CFO' } });
   const text = JSON.stringify(reply.json);
   assert.ok(!text.includes(BUDI_PHONE));
   assert.ok(!text.includes('salt'));

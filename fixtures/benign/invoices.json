@@ -1,0 +1,137 @@
+{
+  "about": "Ordinary invoices paid to the account on record. Invented, and built by scripts/make-fixtures.ts. Do not edit by hand.",
+  "items": [
+    {
+      "id": "bi-001",
+      "supplierId": "tessaline",
+      "invoiceNumber": "TP-2026-040",
+      "issueDate": "2026-05-06",
+      "amount": 178400000,
+      "currency": "IDR",
+      "bankName": "First Example Bank",
+      "accountNumber": "4410027731",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-002",
+      "supplierId": "tessaline",
+      "invoiceNumber": "TP-2026-041",
+      "issueDate": "2026-06-04",
+      "amount": 181900000,
+      "currency": "IDR",
+      "bankName": "First Example Bank",
+      "accountNumber": "4410027731",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-003",
+      "supplierId": "tessaline",
+      "invoiceNumber": "TP-2026-042",
+      "issueDate": "2026-07-07",
+      "amount": 176250000,
+      "currency": "IDR",
+      "bankName": "First Example Bank",
+      "accountNumber": "4410027731",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-004",
+      "supplierId": "tessaline",
+      "invoiceNumber": "TP-2026-043",
+      "issueDate": "2026-08-05",
+      "amount": 184500000,
+      "currency": "IDR",
+      "bankName": "First Example Bank",
+      "accountNumber": "4410027731",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-005",
+      "supplierId": "tessaline",
+      "invoiceNumber": "TP-2026-044",
+      "issueDate": "2026-09-03",
+      "amount": 179800000,
+      "currency": "IDR",
+      "bankName": "First Example Bank",
+      "accountNumber": "4410027731",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-006",
+      "supplierId": "tessaline",
+      "invoiceNumber": "TP-2026-045",
+      "issueDate": "2026-10-06",
+      "amount": 183300000,
+      "currency": "IDR",
+      "bankName": "First Example Bank",
+      "accountNumber": "4410027731",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-007",
+      "supplierId": "sorelka",
+      "invoiceNumber": "SC-11840",
+      "issueDate": "2026-05-12",
+      "amount": 42600000,
+      "currency": "IDR",
+      "bankName": "Harbour Example Bank",
+      "accountNumber": "7302259164",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-008",
+      "supplierId": "sorelka",
+      "invoiceNumber": "SC-11902",
+      "issueDate": "2026-06-11",
+      "amount": 39850000,
+      "currency": "IDR",
+      "bankName": "Harbour Example Bank",
+      "accountNumber": "7302259164",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-009",
+      "supplierId": "sorelka",
+      "invoiceNumber": "SC-11967",
+      "issueDate": "2026-07-13",
+      "amount": 44100000,
+      "currency": "IDR",
+      "bankName": "Harbour Example Bank",
+      "accountNumber": "7302259164",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-010",
+      "supplierId": "sorelka",
+      "invoiceNumber": "SC-12031",
+      "issueDate": "2026-08-12",
+      "amount": 41250000,
+      "currency": "IDR",
+      "bankName": "Harbour Example Bank",
+      "accountNumber": "7302259164",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-011",
+      "supplierId": "sorelka",
+      "invoiceNumber": "SC-12098",
+      "issueDate": "2026-09-11",
+      "amount": 43700000,
+      "currency": "IDR",
+      "bankName": "Harbour Example Bank",
+      "accountNumber": "7302259164",
+      "expected": "not_fishy"
+    },
+    {
+      "id": "bi-012",
+      "supplierId": "sorelka",
+      "invoiceNumber": "SC-12160",
+      "issueDate": "2026-10-12",
+      "amount": 40900000,
+      "currency": "IDR",
+      "bankName": "Harbour Example Bank",
+      "accountNumber": "7302259164",
+      "expected": "not_fishy"
+    }
+  ]
+}
