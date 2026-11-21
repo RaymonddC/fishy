@@ -16,6 +16,7 @@ import { missingFirebaseConfig } from '../core/firebase/app.ts';
 import { signIn } from '../core/firebase/auth.ts';
 import { redact } from '../core/redact/redact.ts';
 import { startCaptionsPanel } from './captions-panel.ts';
+import { startPhonePanel } from './phone-panel.ts';
 
 type State = 'ok' | 'warn' | 'bad';
 
@@ -45,6 +46,13 @@ const ui = {
   where: element('where'),
   sent: element<HTMLDetailsElement>('sent'),
   sentText: element('sent-text'),
+  phonePerson: element<HTMLSelectElement>('phone-person'),
+  phoneStart: element<HTMLButtonElement>('phone-start'),
+  phoneHint: element('phone-hint'),
+  phoneBanner: element('phone-banner'),
+  phoneBannerTitle: element('phone-banner-title'),
+  phoneBannerDetail: element('phone-banner-detail'),
+  phoneApproval: element<HTMLAnchorElement>('phone-approval'),
   error: element('error'),
 };
 
@@ -184,6 +192,7 @@ async function start(): Promise<void> {
     setStatus(ui.firebase, `Not set up. Missing ${missing.join(', ')}. See the README`, 'bad');
     setStatus(ui.appCheck, 'Waiting for Firebase', 'warn');
     setStatus(ui.auth, 'Waiting for Firebase', 'warn');
+    ui.phoneHint.textContent = 'Waiting for Firebase';
     return;
   }
   setStatus(ui.firebase, 'Configured', 'ok');
@@ -206,7 +215,20 @@ async function start(): Promise<void> {
     setStatus(ui.auth, 'Signed in anonymously', 'ok');
   } catch (error) {
     setStatus(ui.auth, `Failed. ${describe(error)}`, 'bad');
+    ui.phoneHint.textContent = 'Sign-in failed, so the directory cannot be read';
+    return;
   }
+
+  // The directory and the check records are only readable after sign-in.
+  await startPhonePanel({
+    person: ui.phonePerson,
+    start: ui.phoneStart,
+    hint: ui.phoneHint,
+    banner: ui.phoneBanner,
+    bannerTitle: ui.phoneBannerTitle,
+    bannerDetail: ui.phoneBannerDetail,
+    approval: ui.phoneApproval,
+  });
 }
 
 void start();

@@ -35,3 +35,9 @@ jobs:
         run: |
           test -f extension/dist/content/meet-captions.js
           ! grep -E "fetch\(|XMLHttpRequest|WebSocket|sendBeacon|EventSource" extension/dist/content/meet-captions.js
+      - name: The Functions build and the approval page must be present
+        run: |
+          test -f functions/lib/index.js
+          test -f web/approve/index.html
+          node --check web/approve/main.js
+          ! grep -rnE "https?://" web/approve/main.js web/approve/index.html

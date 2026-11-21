@@ -175,3 +175,6 @@ functions/lib/
 *.pem
 release/
 *.zip
+
+# Firebase project selection is local to each developer
+.firebaserc

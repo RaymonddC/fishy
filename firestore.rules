@@ -1,0 +1,22 @@
+rules_version = '2';
+
+// Clients may only read. Every write goes through Cloud Functions.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Names, roles and masked numbers. Phone numbers and PIN records live in
+    // directoryPrivate, which no client can read.
+    match /directory/{personId} {
+      allow read: if request.auth != null;
+    }
+
+    // A phone check can be read only by the person who asked for it.
+    match /verifications/{verificationId} {
+      allow get: if request.auth != null && resource.data.requesterUid == request.auth.uid;
+    }
+
+    // Everything else, including directoryPrivate and callCounters, is closed.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

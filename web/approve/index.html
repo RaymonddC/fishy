@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>FISHY payment check</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="phone">
+      <p class="brand">FISHY payment check</p>
+
+      <section id="loading">
+        <p>Opening the check</p>
+      </section>
+
+      <section id="invalid" hidden>
+        <h1>This link is not valid</h1>
+        <p>It may have expired. Start a new check from the side panel.</p>
+      </section>
+
+      <section id="choice" hidden>
+        <h1>A payment request was made in the name of <span id="who"></span></h1>
+        <p>Did you make this request?</p>
+        <div class="keys">
+          <button id="yes" class="key" type="button"><span class="digit">1</span><span>Yes, I made it</span></button>
+          <button id="no" class="key key-no" type="button"><span class="digit">2</span><span>No, not me</span></button>
+        </div>
+      </section>
+
+      <section id="pin" hidden>
+        <h1 id="pin-title"></h1>
+        <p id="pin-lead"></p>
+        <form id="pin-form" class="keys">
+          <label for="pin-input">PIN</label>
+          <input
+            id="pin-input"
+            type="password"
+            inputmode="numeric"
+            autocomplete="off"
+            pattern="[0-9]{4,6}"
+            minlength="4"
+            maxlength="6"
+            required
+          />
+          <button class="key" type="submit"><span>Confirm</span></button>
+        </form>
+        <p id="pin-error" class="problem" role="alert" hidden></p>
+      </section>
+
+      <section id="done" hidden>
+        <h1 id="done-title"></h1>
+        <p id="done-text"></p>
+      </section>
+
+      <p id="problem" class="problem" role="alert" hidden></p>
+
+      <p class="note">
+        Demo page. In real use this question arrives as a phone call to the number on record, and this page is switched
+        off.
+      </p>
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

@@ -68,6 +68,18 @@
         </details>
       </section>
 
+      <section class="card" aria-labelledby="phone-title">
+        <h2 id="phone-title"><label for="phone-person">Phone check</label></h2>
+        <select id="phone-person" disabled></select>
+        <button id="phone-start" class="button button-primary" type="button" disabled>Call to confirm</button>
+        <p id="phone-hint" class="hint">Reading the directory</p>
+        <div id="phone-banner" class="banner" role="status" aria-live="polite" hidden>
+          <p id="phone-banner-title" class="banner-title"></p>
+          <p id="phone-banner-detail"></p>
+        </div>
+        <a id="phone-approval" class="link" target="_blank" rel="noopener noreferrer" hidden>Open the approval page (demo)</a>
+      </section>
+
       <p id="error" class="error" role="alert" hidden></p>
     </main>
 

@@ -14,6 +14,7 @@ In progress. The build runs from 22 to 30 November 2026, and this README is upda
 |---|---|
 | Task 1: a message is read by Gemini Nano in the side panel, or in the cloud after redaction | Code and automated tests done. Not yet confirmed on a real laptop |
 | Task 2: live meeting captions reach the side panel, with pasted text as the fallback | Code and automated tests done. Not yet confirmed in a real meeting |
+| Task 3: a Cloud Function phones the number on record (press 1 or 2, then a PIN), with a web approval page for judges | Code and automated tests done. Not yet deployed or tried on a real phone |
 | Everything else | Not started |
 
 ## How it works
@@ -107,6 +108,61 @@ The extension reads captions from the meeting page and shows them in the **Live 
 If the card says captions are on but nothing has been read for a minute, the meeting page's markup has changed. Paste the conversation into **Pasted text** instead, one line per speaker in the form `Name: what they said`. Then update `extension/src/content/meet-selectors.ts`, which is the only file that depends on the page's markup.
 
 The meeting page has no public interface for live captions, so this reader can break when the page changes. The paste box always works.
+
+### The phone check
+
+This part needs the Blaze plan, because it uses Cloud Functions. Set a budget alert first.
+
+**What it does.** The side panel asks the server to check with a person from the directory. The server looks up that person's number, places the call, and records the answer: press 1 for "I made this request" or 2 for "not me", then a PIN. The side panel shows the result as a banner. The request carries a person ID only. A phone number can never be supplied, and the extension never sees one.
+
+**Two locks on real calls.** Calls are off by default. A call is placed only if `CALLS_ENABLED` is `true` and the number is on `CALL_ALLOWLIST`. Both are settings on the server, not controls in the interface. There is also a daily cap.
+
+**The approval page.** A trial phone account can only call a few verified numbers, so judges get a web page with the same menu. It is a demo device and is off unless `APPROVAL_PAGE_ENABLED` is `true`.
+
+Set it up once:
+
+```bash
+npx firebase-tools login
+```
+
+```bash
+npx firebase-tools use --add
+```
+
+```bash
+cp functions/.env.example functions/.env.YOUR_PROJECT_ID
+```
+
+Fill in `functions/.env.YOUR_PROJECT_ID`. Then store the two phone-provider secrets. If you are only using the approval page, enter any placeholder text for both.
+
+```bash
+npx firebase-tools functions:secrets:set TWILIO_ACCOUNT_SID
+```
+
+```bash
+npx firebase-tools functions:secrets:set TWILIO_AUTH_TOKEN
+```
+
+Deploy the Functions, the Firestore rules and the approval page:
+
+```bash
+npx firebase-tools deploy --only functions,firestore:rules,hosting
+```
+
+Add the demo person. The number and PIN are read from the environment and are not written to any file here. Use a number you have verified with the phone provider and a made-up PIN. This needs Google application default credentials for the project.
+
+```bash
+SEED_PROJECT_ID=YOUR_PROJECT_ID SEED_PHONE=+00000000000 SEED_PIN=0000 node functions/scripts/seed-person.ts
+```
+
+Then check it, in this order:
+
+1. **Approval page only.** Set `APPROVAL_PAGE_ENABLED=true`, leave `CALLS_ENABLED=false`, and deploy. In the side panel choose the person and **Call to confirm**. The banner turns amber and a link to the approval page appears. On that page choose **2**: the banner must turn red within about 3 seconds.
+2. **Wrong PIN.** Start a new check, choose **1**, and enter a wrong PIN three times. The banner must turn red, never green.
+3. **Right PIN.** Start a new check, choose **1**, and enter the right PIN. The banner turns green.
+4. **A real call.** Set `CALLS_ENABLED=true` and put the verified number on `CALL_ALLOWLIST`, then deploy. Start a check. The phone must ring and the menu must play. Press 2: the banner must turn red.
+
+The phone provider's call log records the keys that were pressed, including the PIN, so use a demo PIN only.
 
 ## Data and privacy
 

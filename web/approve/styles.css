@@ -1,0 +1,142 @@
+/* The phone screen: dark, one accent, large keys. */
+:root {
+  --bg: #0f1b26;
+  --surface: #16283a;
+  --line: #2a4058;
+  --ink: #f4f1ea;
+  --ink-soft: #b9c4cf;
+  --accent: #f4694c;
+  --accent-pressed: #e2573b;
+  --radius: 12px;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: start center;
+  padding: 24px 16px;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 16px/24px system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+.phone {
+  width: 100%;
+  max-width: 400px;
+  display: grid;
+  gap: 24px;
+}
+
+.brand {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+section {
+  display: grid;
+  gap: 16px;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+
+.keys {
+  display: grid;
+  gap: 12px;
+}
+
+.key {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  padding: 12px 16px;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.key:hover {
+  border-color: var(--ink-soft);
+}
+
+.key-no {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0f1b26;
+}
+
+.key-no:hover {
+  background: var(--accent-pressed);
+  border-color: var(--accent-pressed);
+}
+
+.digit {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: rgb(255 255 255 / 0.12);
+  font-size: 20px;
+}
+
+.key-no .digit {
+  background: rgb(15 27 38 / 0.16);
+}
+
+label {
+  color: var(--ink-soft);
+}
+
+input {
+  height: 64px;
+  padding: 0 16px;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font: 600 24px/32px ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  letter-spacing: 8px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.problem {
+  color: var(--accent);
+}
+
+.note {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+[hidden] {
+  display: none !important;
+}
