@@ -17,7 +17,8 @@
     "build": "npm run build --workspaces --if-present",
     "check": "npm run typecheck && npm test && npm run build",
     "fixtures": "node scripts/make-fixtures.ts",
-    "seed": "node scripts/seed.ts"
+    "seed": "node scripts/seed.ts",
+    "remoteconfig": "node scripts/make-remote-config.ts"
   },
   "devDependencies": {
     "pdf-lib": "^1.17.1"

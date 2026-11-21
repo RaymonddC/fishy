@@ -4,8 +4,18 @@
       "source": "functions",
       "codebase": "default",
       "runtime": "nodejs22",
-      "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run build"],
-      "ignore": ["node_modules", ".git", "src", "test", "scripts", "*.local", "tsconfig*.json"]
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run build"
+      ],
+      "ignore": [
+        "node_modules",
+        ".git",
+        "src",
+        "test",
+        "scripts",
+        "*.local",
+        "tsconfig*.json"
+      ]
     }
   ],
   "firestore": {
@@ -13,21 +23,52 @@
   },
   "hosting": {
     "public": "web",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "rewrites": [
-      { "source": "/voice/**", "function": { "functionId": "voice", "region": "asia-southeast1" } },
-      { "source": "/api/approve", "function": { "functionId": "approve", "region": "asia-southeast1" } }
+      {
+        "source": "/voice/**",
+        "function": {
+          "functionId": "voice",
+          "region": "asia-southeast1"
+        }
+      },
+      {
+        "source": "/api/approve",
+        "function": {
+          "functionId": "approve",
+          "region": "asia-southeast1"
+        }
+      }
     ],
     "headers": [
       {
         "source": "**",
         "headers": [
-          { "key": "Content-Security-Policy", "value": "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'" },
-          { "key": "Referrer-Policy", "value": "no-referrer" },
-          { "key": "X-Content-Type-Options", "value": "nosniff" },
-          { "key": "Cache-Control", "value": "no-store" }
+          {
+            "key": "Content-Security-Policy",
+            "value": "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "no-referrer"
+          },
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-store"
+          }
         ]
       }
     ]
+  },
+  "remoteconfig": {
+    "template": "remoteconfig.template.json"
   }
 }

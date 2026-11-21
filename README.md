@@ -16,6 +16,7 @@ In progress. The build runs from 22 to 30 November 2026, and this README is upda
 | Task 2: live meeting captions reach the side panel, with pasted text as the fallback | Code and automated tests done. Not yet confirmed in a real meeting |
 | Task 3: a Cloud Function phones the number on record (press 1 or 2, then a PIN), with a web approval page for judges | Code and automated tests done. Not yet deployed or tried on a real phone |
 | Task 4: demo fixtures for one fictional company, and a seed script | Done. The checks run with the unit tests |
+| Task 6: the rules engine that turns signals into a green, amber or red verdict, with patterns in Remote Config | Done and tested. Not yet connected to the side panel |
 | Everything else | Not started |
 
 ## How it works
@@ -166,6 +167,18 @@ Then check it, in this order:
 4. **A real call.** Set `CALLS_ENABLED=true` and put the verified number on `CALL_ALLOWLIST`, then deploy. Start a check. The phone must ring and the menu must play. Press 2: the banner must turn red.
 
 The phone provider's call log records the keys that were pressed, including the PIN, so use a demo PIN only.
+
+### Scam patterns
+
+The verdict is decided by fixed rules, never by a model. Checks and models produce signals, such as "the sender's domain is a lookalike" or "the message asks for secrecy", and the rules engine applies patterns to them. The same signals always give the same verdict.
+
+The patterns ship with the extension in `extension/src/core/rules/defaults.ts`. To change them without a release, publish them to Remote Config:
+
+```bash
+npx firebase-tools deploy --only remoteconfig
+```
+
+Then edit the `scam_patterns` value in the Firebase console. A pattern set that is not valid is ignored and the built-in patterns are used. After changing the built-in patterns, run `npm run remoteconfig` to rebuild the template; a check fails if the two differ.
 
 ## Data and privacy
 
