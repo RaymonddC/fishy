@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FISHY</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <h1 class="wordmark">FISHY</h1>
+      <p class="tagline">Don’t take the bait. Make the call.</p>
+    </header>
+
+    <main>
+      <section class="card" aria-labelledby="ready-title">
+        <h2 id="ready-title">Readiness</h2>
+        <dl class="status">
+          <div class="status-row">
+            <dt>Firebase</dt>
+            <dd id="status-firebase">Checking</dd>
+          </div>
+          <div class="status-row">
+            <dt>App Check</dt>
+            <dd id="status-appcheck">Checking</dd>
+          </div>
+          <div class="status-row">
+            <dt>Sign-in</dt>
+            <dd id="status-auth">Checking</dd>
+          </div>
+          <div class="status-row">
+            <dt>On-device model</dt>
+            <dd id="status-model">Checking</dd>
+          </div>
+        </dl>
+        <button id="download" class="button button-quiet" type="button" hidden>Download on-device model</button>
+        <p id="download-progress" class="hint" hidden></p>
+      </section>
+
+      <section class="card" aria-labelledby="message-title">
+        <h2 id="message-title"><label for="message">Message to check</label></h2>
+        <textarea id="message" rows="8" placeholder="Paste meeting captions or an email here"></textarea>
+        <button id="check" class="button button-primary" type="button">Check message</button>
+      </section>
+
+      <section id="result" class="card" aria-labelledby="result-title" aria-live="polite" hidden>
+        <div class="result-head">
+          <h2 id="result-title">Result</h2>
+          <span id="badge" class="badge"></span>
+        </div>
+        <p class="answer-label">Pressure tactics found</p>
+        <p id="answer" class="answer"></p>
+        <p id="where" class="hint"></p>
+        <details id="sent" hidden>
+          <summary>What was sent to the cloud</summary>
+          <pre id="sent-text"></pre>
+        </details>
+      </section>
+
+      <p id="error" class="error" role="alert" hidden></p>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

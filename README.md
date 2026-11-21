@@ -8,7 +8,12 @@ This is an entry for the Firebase #BuildHybridAI 2026 hackathon.
 
 ## Status
 
-Planning. Nothing is built yet. The build runs from 22 to 30 November 2026, and this README is updated as each piece lands.
+In progress. The build runs from 22 to 30 November 2026, and this README is updated as each piece lands. The plan is in [docs/PLAN.md](docs/PLAN.md).
+
+| Piece | State |
+|---|---|
+| Task 1: a message is read by Gemini Nano in the side panel, or in the cloud after redaction | Code and automated tests done. Not yet confirmed on a real laptop |
+| Everything else | Not started |
 
 ## How it works
 
@@ -27,7 +32,65 @@ TypeScript, Vite, the Chrome extension side panel, Firebase AI Logic with Gemini
 
 ## Setup
 
-Setup steps are added here with the first task that needs them, and are kept current after that.
+You need Node.js 22.18 or newer and desktop Chrome 138 or newer.
+
+### 1. Firebase project
+
+1. Create a Firebase project and add a **Web app** to it. Keep the configuration values it shows.
+2. Open **AI Logic**, choose **Get started**, and pick the **Gemini Developer API**.
+3. Open **Authentication**, then **Sign-in method**, and enable **Anonymous**.
+4. Open **App Check**, find the web app, and add a **debug token** from its menu. Keep the token private.
+
+The free Spark plan is enough for this step.
+
+### 2. Local configuration
+
+```bash
+npm ci
+```
+
+```bash
+cp extension/.env.example extension/.env.local
+```
+
+Fill in `extension/.env.local` with the web app configuration and the debug token. This file is ignored by git. Never commit it.
+
+### 3. Build and load the extension
+
+```bash
+npm run build
+```
+
+1. Open `chrome://extensions` and turn on **Developer mode**.
+2. Choose **Load unpacked** and select the `extension/dist` folder.
+3. Click the FISHY button in the toolbar. The side panel opens.
+
+After a code change, run the build again and press the reload button on the extension's card.
+
+### 4. Run the checks
+
+```bash
+npm run check
+```
+
+This runs the type check, the unit tests and the build. Unit tests alone are `npm test`; they need nothing installed beyond Node.js.
+
+## Checking that it works
+
+The side panel shows four readiness lines: Firebase, App Check, Sign-in and On-device model. Paste a message, choose **Check message**, and read the badge on the result.
+
+**On a laptop that can run Gemini Nano** (22 GB of free disk, and either a GPU with more than 4 GB of video memory or 16 GB of RAM with 4 cores):
+
+1. If the model line says it is not downloaded, choose **Download on-device model** and wait.
+2. Right-click the side panel, choose **Inspect**, and open the **Network** tab.
+3. Check a message. The badge must say **On device**, and the Network tab must show no new request.
+
+**Without Gemini Nano** (for example a new Chrome profile, before the model is downloaded):
+
+1. Check the same message. The badge must say **Cloud**.
+2. Open **What was sent to the cloud**. Names, amounts, account numbers, phone numbers, email addresses and links must appear only as placeholders such as `[NAME_1]`.
+
+Use made-up messages only.
 
 ## Data and privacy
 
