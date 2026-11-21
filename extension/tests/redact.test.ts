@@ -90,3 +90,8 @@ test('keeps a role but removes the name beside it', () => {
   const out = redact('Ask the Finance Director Budi Prakoso first.');
   assert.equal(out.text, 'Ask the Finance Director [NAME_1] first.');
 });
+
+test('the first word after a speaker label is a sentence opener, not a name', () => {
+  const out = redact('Laras Pramesti: Understood. Let me check.\nBudi Prakoso: Thanks.', ['Laras Pramesti', 'Budi Prakoso']);
+  assert.equal(out.text, '[NAME_1]: Understood. Let me check.\n[NAME_2]: Thanks.');
+});

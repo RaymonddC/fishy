@@ -125,6 +125,36 @@ h2 {
   color: var(--ink-faint);
 }
 
+.email-from {
+  overflow-wrap: anywhere;
+}
+
+.flags {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flags li {
+  display: grid;
+  gap: 0;
+  padding-left: 12px;
+  border-left: 3px solid var(--danger);
+}
+
+.flag-title {
+  font-weight: 600;
+}
+
+.flag-detail {
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 16px;
+  overflow-wrap: anywhere;
+}
+
 textarea {
   width: 100%;
   min-height: 160px;

@@ -15,7 +15,10 @@ import { checkAppCheck, startAppCheck } from '../core/firebase/app-check.ts';
 import { missingFirebaseConfig } from '../core/firebase/app.ts';
 import { signIn } from '../core/firebase/auth.ts';
 import { redact } from '../core/redact/redact.ts';
+import { checkLinkSafety } from '../core/checks/link-safety.ts';
+import { knownParties } from '../core/directory/known-parties.ts';
 import { startCaptionsPanel } from './captions-panel.ts';
+import { startEmailPanel } from './email-panel.ts';
 import { startPhonePanel } from './phone-panel.ts';
 
 type State = 'ok' | 'warn' | 'bad';
@@ -38,6 +41,12 @@ const ui = {
   captionsStatus: element('captions-status'),
   captionsList: element('captions-list'),
   captionsCheck: element<HTMLButtonElement>('captions-check'),
+  emailStatus: element('email-status'),
+  emailFrom: element('email-from'),
+  emailFlags: element('email-flags'),
+  emailLinkStatus: element('email-link-status'),
+  emailAdvisory: element<HTMLAnchorElement>('email-advisory'),
+  emailCheck: element<HTMLButtonElement>('email-check'),
   message: element<HTMLTextAreaElement>('message'),
   check: element<HTMLButtonElement>('check'),
   result: element('result'),
@@ -90,6 +99,7 @@ function setChecking(busy: boolean): void {
   checking = busy;
   ui.check.disabled = busy || !firebaseReady;
   ui.captionsCheck.disabled = busy || !firebaseReady;
+  ui.emailCheck.disabled = busy || !firebaseReady;
   ui.check.textContent = busy ? 'Checking' : 'Check pasted text';
   ui.captionsCheck.textContent = busy ? 'Checking' : 'Check these captions';
 }
@@ -123,7 +133,7 @@ function showResult(result: Analysis): void {
 }
 
 /** Live captions and pasted text both arrive here as the same line objects. */
-async function checkLines(lines: CaptionLine[]): Promise<void> {
+async function checkLines(lines: CaptionLine[], moreNames: readonly string[] = []): Promise<void> {
   if (checking) {
     return;
   }
@@ -133,7 +143,7 @@ async function checkLines(lines: CaptionLine[]): Promise<void> {
     return;
   }
   const transcript = formatTranscript(lines);
-  const names = speakerNames(lines);
+  const names = [...speakerNames(lines), ...moreNames];
   setChecking(true);
   try {
     const models = aiModels();
@@ -184,6 +194,22 @@ async function start(): Promise<void> {
     { status: ui.captionsStatus, list: ui.captionsList, check: ui.captionsCheck },
     (lines) => void checkLines(lines),
   );
+  const emailPanel = startEmailPanel(
+    {
+      status: ui.emailStatus,
+      from: ui.emailFrom,
+      flags: ui.emailFlags,
+      linkStatus: ui.emailLinkStatus,
+      advisory: ui.emailAdvisory,
+      check: ui.emailCheck,
+    },
+    {
+      known: () => (firebaseReady ? knownParties() : Promise.resolve(null)),
+      checkLink: checkLinkSafety,
+      onCheck: (email, assessment) =>
+        void checkLines(parsePasted(`${email.subject}\n${email.bodyText}`), assessment.namesToRedact),
+    },
+  );
   setChecking(false);
   void refreshModelStatus();
 
@@ -213,6 +239,7 @@ async function start(): Promise<void> {
   try {
     await signIn();
     setStatus(ui.auth, 'Signed in anonymously', 'ok');
+    emailPanel.refresh();
   } catch (error) {
     setStatus(ui.auth, `Failed. ${describe(error)}`, 'bad');
     ui.phoneHint.textContent = 'Sign-in failed, so the directory cannot be read';

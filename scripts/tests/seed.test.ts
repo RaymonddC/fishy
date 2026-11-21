@@ -68,3 +68,15 @@ test('suppliers carry their invoice history, and the known-bad list is copied as
   assert.equal(suppliers.tessaline?.bank.accountNumber, company.suppliers[0]?.bank.accountNumber);
   assert.equal(knownBadEntries.length, knownBad.entries.length);
 });
+
+test('the company profile lists the domain and every staff name, for the sender check', () => {
+  const { companyProfile, suppliers } = seed();
+
+  assert.deepEqual(companyProfile, {
+    name: 'Ombakura Freight',
+    domain: 'ombakura-freight.example',
+    staffNames: ['Budi Prakoso', 'Bayu Wicaksana', 'Laras Pramesti'],
+  });
+  assert.equal(suppliers.tessaline?.contactName, 'Yoga Permana');
+  assert.ok(!JSON.stringify(companyProfile).includes('2025550143'));
+});

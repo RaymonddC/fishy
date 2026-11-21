@@ -6,6 +6,8 @@ import { findLookalike, isSameOrSubdomain, normaliseDomain } from './lookalike.t
 
 /** What the company knows: its own domain and people, and its suppliers. */
 export interface KnownParties {
+  /** The company's own name, when known. Used for redaction, not for the sender check. */
+  companyName?: string;
   companyDomain: string;
   staffNames: string[];
   suppliers: { name: string; domain: string; contactName: string }[];

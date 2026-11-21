@@ -17,6 +17,7 @@ In progress. The build runs from 22 to 30 November 2026, and this README is upda
 | Task 3: a Cloud Function phones the number on record (press 1 or 2, then a PIN), with a web approval page for judges | Code and automated tests done. Not yet deployed or tried on a real phone |
 | Task 4: demo fixtures for one fictional company, and a seed script | Done. The checks run with the unit tests |
 | Task 6: the rules engine that turns signals into a green, amber or red verdict, with patterns in Remote Config | Done and tested. Not yet connected to the side panel |
+| Task 10: checks on an opened email: the sender, lookalike domains and links | Code and automated tests done. Not yet confirmed in a real inbox, and the link-safety function is not yet deployed |
 | Everything else | Not started |
 
 ## How it works
@@ -110,6 +111,23 @@ The extension reads captions from the meeting page and shows them in the **Live 
 If the card says captions are on but nothing has been read for a minute, the meeting page's markup has changed. Paste the conversation into **Pasted text** instead, one line per speaker in the form `Name: what they said`. Then update `extension/src/content/meet-selectors.ts`, which is the only file that depends on the page's markup.
 
 The meeting page has no public interface for live captions, so this reader can break when the page changes. The paste box always works.
+
+### An opened email
+
+Open an email in the mail tab with the side panel open. The **Opened email** card shows who it is from and lists any red flags:
+
+- the sender's domain imitates the company's own domain or a supplier's
+- the sender uses a known name on an address that is not theirs
+- a link shows one address but goes to another, or goes to a lookalike domain
+- a link is on a list of suspected unsafe sites
+
+The first three are worked out on the laptop, against the company's own domain and its suppliers' domains from the seed data. Load the seed data first, or the card says the sender could not be judged.
+
+The last one asks the `checkLink` Cloud Function, which asks Google Web Risk. Only the link's address is sent, with everything after the path removed, and never anything else from the email. Web Risk must be enabled in the Google Cloud project. It only knows addresses already on its lists, so a lookalike domain registered this morning will not be there: that is what the lookalike check is for. A match is shown with the line "Advisory provided by Google".
+
+**Check this email's wording** runs the same check as for pasted text.
+
+Only the message that is open is read, never the inbox list. If nothing appears, the mail page's markup has changed: update `extension/src/content/gmail-selectors.ts`, the only file that depends on it, and paste the email's text into **Pasted text** meanwhile.
 
 ### The phone check
 

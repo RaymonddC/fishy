@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "build": "vite build && vite build --config vite.content.config.ts"
+    "build": "vite build && vite build --config vite.content.config.ts --mode meet-captions && vite build --config vite.content.config.ts --mode gmail-open-email"
   },
   "dependencies": {
     "firebase": "13.4.0"

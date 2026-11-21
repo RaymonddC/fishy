@@ -26,6 +26,15 @@
         "content/meet-captions.js"
       ],
       "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "js": [
+        "content/gmail-open-email.js"
+      ],
+      "run_at": "document_idle"
     }
   ]
 }

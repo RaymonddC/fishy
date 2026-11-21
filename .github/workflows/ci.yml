@@ -31,10 +31,11 @@ jobs:
           test -f extension/dist/src/sidepanel/index.html
           ! grep -rIl "recaptcha/api.js\|recaptcha/enterprise.js" extension/dist
           ! find extension/dist -name ".env*" | grep .
-      - name: The meeting content script must not be able to reach the network
+      - name: The content scripts must not be able to reach the network
         run: |
           test -f extension/dist/content/meet-captions.js
-          ! grep -E "fetch\(|XMLHttpRequest|WebSocket|sendBeacon|EventSource" extension/dist/content/meet-captions.js
+          test -f extension/dist/content/gmail-open-email.js
+          ! grep -E "fetch\(|XMLHttpRequest|WebSocket|sendBeacon|EventSource" extension/dist/content/meet-captions.js extension/dist/content/gmail-open-email.js
       - name: The Functions build and the approval page must be present
         run: |
           test -f functions/lib/index.js

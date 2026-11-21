@@ -9,7 +9,7 @@ import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
 import { DEFAULT_RULES } from '../src/core/rules/defaults.ts';
-import { decide, SIGNAL_TYPES } from '../src/core/rules/engine.ts';
+import { decide, describeSignal, SIGNAL_TYPES } from '../src/core/rules/engine.ts';
 import type { RuleSet, Signal, SignalType } from '../src/core/rules/engine.ts';
 import { chooseRules, parseRuleSet } from '../src/core/rules/validate.ts';
 
@@ -273,5 +273,13 @@ test('the engine uses no clock, no randomness and no network', () => {
     for (const [, from] of source.matchAll(/from\s+'([^']+)'/g)) {
       assert.ok(from?.startsWith('./'), `${file} may only import its neighbours, not "${from}"`);
     }
+  }
+});
+
+test('every signal can be described in plain words, including a request for money', () => {
+  for (const type of SIGNAL_TYPES) {
+    const text = describeSignal(type);
+    assert.ok(text.length > 10, type);
+    assert.ok(!text.includes('_'), type);
   }
 });

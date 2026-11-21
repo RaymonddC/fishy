@@ -24,7 +24,12 @@ export interface SeedOutput {
   directory: Record<string, { name: string; role: string; maskedPhone: string; approverOrder: number | null }>;
   /** Readable by Cloud Functions only. */
   directoryPrivate: Record<string, { phone: string; pinSalt: string; pinHash: string }>;
-  suppliers: Record<string, { name: string; domain: string; bank: BankDetails; invoiceHistory: HistoryEntry[] }>;
+  /** Readable by signed-in clients. Names and the domain only, for the sender check. */
+  companyProfile: { name: string; domain: string; staffNames: string[] };
+  suppliers: Record<
+    string,
+    { name: string; domain: string; contactName: string; bank: BankDetails; invoiceHistory: HistoryEntry[] }
+  >;
   knownBadEntries: KnownBadEntry[];
   /** Staff who were left out because no number was given for them. */
   skipped: string[];
@@ -41,7 +46,18 @@ export function buildSeed(input: SeedInput): SeedOutput {
     }
   }
 
-  const output: SeedOutput = { directory: {}, directoryPrivate: {}, suppliers: {}, knownBadEntries: [], skipped: [] };
+  const output: SeedOutput = {
+    directory: {},
+    directoryPrivate: {},
+    companyProfile: {
+      name: company.company.name,
+      domain: company.company.domain,
+      staffNames: company.staff.map((person) => person.name),
+    },
+    suppliers: {},
+    knownBadEntries: [],
+    skipped: [],
+  };
 
   for (const person of company.staff) {
     const given = phones[person.id];
@@ -67,6 +83,7 @@ export function buildSeed(input: SeedInput): SeedOutput {
     output.suppliers[supplier.id] = {
       name: supplier.name,
       domain: supplier.domain,
+      contactName: supplier.contact.name,
       bank: supplier.bank,
       invoiceHistory: supplier.invoiceHistory,
     };

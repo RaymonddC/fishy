@@ -9,6 +9,16 @@ service cloud.firestore {
       allow read: if request.auth != null;
     }
 
+    // The company's name, domain and staff names, and its suppliers with
+    // their past invoices. The laptop needs these to check senders and
+    // invoices without asking a server. All of it is demo data.
+    match /company/{document} {
+      allow read: if request.auth != null;
+    }
+    match /suppliers/{supplierId} {
+      allow read: if request.auth != null;
+    }
+
     // A phone check can be read only by the person who asked for it.
     match /verifications/{verificationId} {
       allow get: if request.auth != null && resource.data.requesterUid == request.auth.uid;

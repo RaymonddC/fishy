@@ -88,6 +88,7 @@ for (const [id, person] of Object.entries(seed.directory)) {
 for (const [id, secret] of Object.entries(seed.directoryPrivate)) {
   batch.set(db.collection('directoryPrivate').doc(id), secret);
 }
+batch.set(db.collection('company').doc('profile'), seed.companyProfile);
 for (const [id, supplier] of Object.entries(seed.suppliers)) {
   batch.set(db.collection('suppliers').doc(id), supplier);
 }

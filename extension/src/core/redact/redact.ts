@@ -92,7 +92,11 @@ function startsSentence(text: string, offset: number): boolean {
     return true;
   }
   const before = text[index];
-  return before === '.' || before === '!' || before === '?' || before === '\n' || before === '\r';
+  if (before === '.' || before === '!' || before === '?' || before === '\n' || before === '\r') {
+    return true;
+  }
+  // "[NAME_1]: Understood" is a speaker label followed by the start of what they said.
+  return before === ':' && text[index - 1] === ']';
 }
 
 /**

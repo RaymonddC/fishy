@@ -18,6 +18,8 @@ import { startVerification as start } from './call/startVerification.ts';
 import { firestoreStore } from './call/store-firestore.ts';
 import { twilioCalls } from './call/twilio-calls.ts';
 import { handleVoice } from './call/webhooks.ts';
+import { checkLink as checkOneLink } from './webrisk/checkLink.ts';
+import { webRiskLookup } from './webrisk/web-risk-lookup.ts';
 
 initializeApp();
 
@@ -108,4 +110,23 @@ export const approve = onRequest({ region: REGION }, async (request, response) =
     body: request.body,
   });
   response.set('Cache-Control', 'no-store').status(reply.status).json(reply.json);
+});
+
+/**
+ * Called by the extension to check one link against a list of suspected
+ * unsafe sites. Takes an address and nothing else, and strips it first.
+ */
+export const checkLink = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
+  try {
+    return await checkOneLink(
+      { lookup: webRiskLookup(), now: () => Date.now() },
+      request.auth ? { uid: request.auth.uid } : null,
+      request.data,
+    );
+  } catch (error) {
+    if (error instanceof RequestError) {
+      throw new HttpsError(error.code, error.message);
+    }
+    throw new HttpsError('unavailable', 'The link could not be checked.');
+  }
 });

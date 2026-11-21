@@ -101,6 +101,11 @@ const FLAG_TEXT: Record<Exclude<SignalType, 'money_request'>, string> = {
   known_bad_number: 'The phone number was used in a confirmed scam',
 };
 
+/** What a signal means, in plain words. */
+export function describeSignal(type: SignalType): string {
+  return type === 'money_request' ? 'Asks for a payment or a transfer' : FLAG_TEXT[type];
+}
+
 const ADVICE: Record<Verdict, string> = {
   green: 'Nothing fishy found. Still call back on the number on record before paying.',
   amber: 'Something is off. Check with the real person on the number on record before paying.',
