@@ -3,8 +3,9 @@
 
 import { bannerFor } from '../core/call/banner.ts';
 import type { CheckView } from '../core/call/banner.ts';
-import { listPeople, startPhoneCheck, watchCheck } from '../core/call/verify.ts';
+import { listPeople, reportSuspectDetails, startPhoneCheck, watchCheck } from '../core/call/verify.ts';
 import type { DirectoryPerson } from '../core/call/verify.ts';
+import type { Suspects } from '../core/match/suspects.ts';
 
 export interface PhonePanelElements {
   person: HTMLSelectElement;
@@ -16,13 +17,21 @@ export interface PhonePanelElements {
   approval: HTMLAnchorElement;
 }
 
+export interface PhonePanelDeps {
+  /** The details of the request on screen: domains, accounts and numbers only. */
+  suspects(): Suspects;
+  /** Called once when the real person says "not me" and confirms it with their PIN. */
+  onConfirmedScam(): void;
+}
+
 function describe(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
-export async function startPhonePanel(ui: PhonePanelElements): Promise<void> {
+export async function startPhonePanel(ui: PhonePanelElements, deps: PhonePanelDeps): Promise<void> {
   let people: DirectoryPerson[] = [];
   let stopWatching: (() => void) | null = null;
+  let told = false;
 
   function show(check: CheckView, person: DirectoryPerson): void {
     const banner = bannerFor(check, person);
@@ -33,6 +42,10 @@ export async function startPhonePanel(ui: PhonePanelElements): Promise<void> {
     const answered = check.status !== 'waiting' && check.status !== 'awaiting_pin';
     if (answered) {
       ui.approval.hidden = true;
+    }
+    if (check.status === 'denied' && check.pinVerified && !told) {
+      told = true;
+      deps.onConfirmedScam();
     }
   }
 
@@ -51,6 +64,12 @@ export async function startPhonePanel(ui: PhonePanelElements): Promise<void> {
       try {
         const started = await startPhoneCheck(person.id);
         ui.hint.textContent = '';
+        told = false;
+        const suspects = deps.suspects();
+        if (suspects.accounts.length + suspects.domains.length + suspects.numbers.length > 0) {
+          // If this fails the check still runs. The list just does not learn from it.
+          void reportSuspectDetails(started.verificationId, suspects).catch(() => undefined);
+        }
         if (started.approvalUrl?.startsWith('https://')) {
           ui.approval.href = started.approvalUrl;
           ui.approval.hidden = false;

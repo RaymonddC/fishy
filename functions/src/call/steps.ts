@@ -8,6 +8,7 @@
 // - "1" alone confirms nothing. Only "1" followed by the right PIN does.
 // - Once a check is closed, nothing reopens it.
 
+import { learnFromDenial } from '../learn/onDenied.ts';
 import { verifyPin } from './pin.ts';
 import type { CheckDeps, Verification } from './ports.ts';
 
@@ -115,5 +116,15 @@ export async function answerPin(deps: CheckDeps, id: string, pin: string): Promi
     seen.outcome = change.outcome;
     return change.next;
   });
+  if (seen.outcome === 'denied_verified' && verification) {
+    // "Not me", confirmed with the PIN: the details of this request join the
+    // known-bad list. This outcome happens once per check, so nothing is
+    // counted twice. A failure here must not undo the answer just recorded.
+    try {
+      await learnFromDenial(deps, verification);
+    } catch {
+      // The answer stands. The list simply did not learn from this one.
+    }
+  }
   return { outcome: seen.outcome, verification };
 }

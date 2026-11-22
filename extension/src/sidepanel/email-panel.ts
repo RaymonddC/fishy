@@ -9,6 +9,7 @@ import { assessEmail } from '../core/email/assess.ts';
 import type { EmailAssessment } from '../core/email/assess.ts';
 import { EMAIL_SYNC, isEmailUpdate } from '../core/email/messages.ts';
 import type { EmailSyncRequest, OpenEmail } from '../core/email/messages.ts';
+import type { KnownBadIndex } from '../core/match/known-bad.ts';
 import { describeSignal } from '../core/rules/engine.ts';
 import { flagItem } from './flags.ts';
 
@@ -24,6 +25,10 @@ export interface EmailPanelElements {
 
 export interface EmailPanelDeps {
   known(): Promise<KnownParties | null>;
+  /** A copy of the known-bad list, or null if it cannot be read. */
+  knownBad(): Promise<KnownBadIndex | null>;
+  /** Told what is open and what was found, so a phone check can report the details. */
+  onAssessed(email: OpenEmail | null, assessment: EmailAssessment | null): void;
   checkLink(url: string): Promise<LinkSafety>;
   /** Run the wording check on the email's text. */
   onCheck(email: OpenEmail, assessment: EmailAssessment): void;
@@ -92,14 +97,16 @@ export function startEmailPanel(ui: EmailPanelElements, deps: EmailPanelDeps): {
     const thisRun = run;
     if (!email) {
       clear();
+      deps.onAssessed(null, null);
       return;
     }
-    const known = await deps.known();
+    const [known, knownBad] = await Promise.all([deps.known(), deps.knownBad()]);
     if (thisRun !== run) {
       return;
     }
-    const assessment = assessEmail(email, known);
+    const assessment = assessEmail(email, known, knownBad ?? undefined);
     current = { email, assessment };
+    deps.onAssessed(email, assessment);
 
     ui.from.textContent = `From ${email.sender.name || 'no name'} <${email.sender.address}>`;
     ui.from.hidden = false;
@@ -121,7 +128,7 @@ export function startEmailPanel(ui: EmailPanelElements, deps: EmailPanelDeps): {
     } else if (found === 0) {
       ui.status.textContent = 'Nothing unusual about the sender or the links';
     } else {
-      ui.status.textContent = `${found === 1 ? '1 red flag' : `${found} red flags`} in the sender and the links`;
+      ui.status.textContent = `${found === 1 ? '1 red flag' : `${found} red flags`} in this email`;
     }
 
     await checkLinksAgainstList(assessment, thisRun);

@@ -6,7 +6,7 @@ import twilio from 'twilio';
 import type { CallProvider, CallRequest } from '../src/call/ports.ts';
 import type { CheckConfig, CheckDeps } from '../src/call/ports.ts';
 import { hashPin } from '../src/call/pin.ts';
-import type { Person, Store, Verification } from '../src/call/ports.ts';
+import type { KnownBadKey, KnownBadRecord, Person, Store, Suspects, Verification } from '../src/call/ports.ts';
 
 export const TEST_AUTH_TOKEN = 'test-auth-token';
 export const BASE_URL = 'https://fishy-demo.example';
@@ -23,6 +23,8 @@ export class MemoryStore implements Store {
   people = new Map<string, Person>([['budi', budi()]]);
   verifications = new Map<string, Verification>();
   callsByDay = new Map<string, number>();
+  suspects = new Map<string, Suspects>();
+  knownBad = new Map<string, KnownBadRecord>();
 
   async getPerson(personId: string): Promise<Person | null> {
     return this.people.get(personId) ?? null;
@@ -59,6 +61,35 @@ export class MemoryStore implements Store {
     }
     this.callsByDay.set(dayKey, used + 1);
     return true;
+  }
+
+  async saveSuspects(verificationId: string, suspects: Suspects): Promise<void> {
+    this.suspects.set(verificationId, structuredClone(suspects));
+  }
+
+  async getSuspects(verificationId: string): Promise<Suspects | null> {
+    return structuredClone(this.suspects.get(verificationId) ?? null);
+  }
+
+  async raiseKnownBad(entries: readonly KnownBadKey[], now: number): Promise<void> {
+    for (const entry of entries) {
+      const key = `${entry.type}:${entry.value}`;
+      const existing = this.knownBad.get(key);
+      this.knownBad.set(key, {
+        type: entry.type,
+        value: entry.value,
+        seenCount: (existing?.seenCount ?? 0) + 1,
+        firstSeen: existing?.firstSeen ?? now,
+        lastSeen: now,
+      });
+    }
+  }
+
+  async protectedValues(): Promise<{ domains: string[]; accounts: string[] }> {
+    return {
+      domains: ['ombakura-freight.example', 'tessaline-packaging.example', 'sorelka-couriers.example'],
+      accounts: ['4410027731', '7302259164'],
+    };
   }
 }
 

@@ -49,6 +49,24 @@ export interface Verification {
   updatedAt: number;
 }
 
+/** The details of a suspicious request: never the text of a message. */
+export interface Suspects {
+  accounts: string[];
+  domains: string[];
+  numbers: string[];
+}
+
+export interface KnownBadKey {
+  type: 'account' | 'domain' | 'number';
+  value: string;
+}
+
+export interface KnownBadRecord extends KnownBadKey {
+  seenCount: number;
+  firstSeen: number | string;
+  lastSeen: number;
+}
+
 export interface Store {
   getPerson(personId: string): Promise<Person | null>;
   createVerification(verification: Verification): Promise<void>;
@@ -61,6 +79,13 @@ export interface Store {
   updateVerification(id: string, change: (current: Verification) => Verification | null): Promise<Verification | null>;
   /** Counts one call against the day's cap. False when the cap is already reached. */
   reserveCall(dayKey: string, dailyCap: number): Promise<boolean>;
+  /** Keeps the details of the request a check is about. Clients cannot read them back. */
+  saveSuspects(verificationId: string, suspects: Suspects): Promise<void>;
+  getSuspects(verificationId: string): Promise<Suspects | null>;
+  /** Adds each detail to the known-bad list with a count of 1, or raises its count by 1. */
+  raiseKnownBad(entries: readonly KnownBadKey[], now: number): Promise<void>;
+  /** The company's own domain and its suppliers' domains and accounts. These can never be marked bad. */
+  protectedValues(): Promise<{ domains: string[]; accounts: string[] }>;
 }
 
 export interface CallRequest {
@@ -98,7 +123,7 @@ export interface CheckDeps {
   validSignature(signature: string | undefined, url: string, params: Record<string, string>): boolean;
 }
 
-export type RequestErrorCode = 'unauthenticated' | 'invalid-argument' | 'not-found';
+export type RequestErrorCode = 'unauthenticated' | 'invalid-argument' | 'not-found' | 'permission-denied';
 
 /** A request the caller got wrong. Safe to show to the caller. */
 export class RequestError extends Error {

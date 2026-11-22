@@ -5,6 +5,8 @@ import { checkLinks } from '../checks/links.ts';
 import type { LinkFinding } from '../checks/links.ts';
 import { checkSender } from '../checks/sender.ts';
 import type { KnownParties } from '../checks/sender.ts';
+import { candidatesFromText, matchKnownBad } from '../match/known-bad.ts';
+import type { KnownBadIndex } from '../match/known-bad.ts';
 import type { Signal } from '../rules/engine.ts';
 import type { OpenEmail } from './messages.ts';
 
@@ -36,13 +38,22 @@ function withParts(names: readonly string[]): string[] {
   return [...all];
 }
 
-/** @param known The company's own domain and people and its suppliers, or null if they could not be loaded. */
-export function assessEmail(email: OpenEmail, known: KnownParties | null): EmailAssessment {
+/**
+ * @param known The company's own domain and people and its suppliers, or null if they could not be loaded.
+ * @param knownBad A copy of the known-bad list, when there is one. Matching it makes no request.
+ */
+export function assessEmail(email: OpenEmail, known: KnownParties | null, knownBad?: KnownBadIndex): EmailAssessment {
   const genuine = known ? [known.companyDomain, ...known.suppliers.map((supplier) => supplier.domain)] : [];
   const links = checkLinks(email.links, genuine);
   const sender = known ? checkSender(email.sender, known) : [];
+  const listed = knownBad
+    ? matchKnownBad(knownBad, {
+        ...candidatesFromText(email.bodyText),
+        domains: [email.sender.address.slice(email.sender.address.lastIndexOf('@') + 1), ...links.findings.map((link) => link.host)],
+      }).map((match) => match.signal)
+    : [];
   return {
-    signals: [...sender, ...links.signals],
+    signals: [...sender, ...links.signals, ...listed],
     links: links.findings,
     toCheck: links.toCheck,
     knownPartiesAvailable: known !== null,

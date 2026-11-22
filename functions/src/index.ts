@@ -18,6 +18,7 @@ import { startVerification as start } from './call/startVerification.ts';
 import { firestoreStore } from './call/store-firestore.ts';
 import { twilioCalls } from './call/twilio-calls.ts';
 import { handleVoice } from './call/webhooks.ts';
+import { reportSuspects as report } from './learn/suspects.ts';
 import { checkLink as checkOneLink } from './webrisk/checkLink.ts';
 import { webRiskLookup } from './webrisk/web-risk-lookup.ts';
 
@@ -128,5 +129,21 @@ export const checkLink = onCall({ region: REGION, enforceAppCheck: true }, async
       throw new HttpsError(error.code, error.message);
     }
     throw new HttpsError('unavailable', 'The link could not be checked.');
+  }
+});
+
+/**
+ * Called by the extension right after a check starts, with the details of the
+ * request it is about: domains, account numbers and phone numbers only. They
+ * join the known-bad list only if the real person says "not me" with their PIN.
+ */
+export const reportSuspects = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
+  try {
+    return await report(deps(noCalls, null), request.auth ? { uid: request.auth.uid } : null, request.data);
+  } catch (error) {
+    if (error instanceof RequestError) {
+      throw new HttpsError(error.code, error.message);
+    }
+    throw error;
   }
 });

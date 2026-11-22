@@ -6,6 +6,8 @@ import { checkInvoice, extractInvoiceFields, findSupplier } from '../core/checks
 import type { InvoiceCheck, SupplierRecord } from '../core/checks/invoice.ts';
 import { pdfLibrary } from '../core/checks/pdf-browser.ts';
 import { readPdf } from '../core/checks/pdf.ts';
+import { matchKnownBad } from '../core/match/known-bad.ts';
+import type { KnownBadIndex } from '../core/match/known-bad.ts';
 import { describeSignal } from '../core/rules/engine.ts';
 import { flagItem } from './flags.ts';
 
@@ -21,6 +23,10 @@ export interface InvoicePanelElements {
 export interface InvoicePanelDeps {
   /** The suppliers with their past invoices, or null if they cannot be read. */
   suppliers(): Promise<SupplierRecord[] | null>;
+  /** A copy of the known-bad list, or null if it cannot be read. */
+  knownBad(): Promise<KnownBadIndex | null>;
+  /** Told what was found, so a phone check can report the details. */
+  onChecked(result: InvoiceCheck): void;
 }
 
 const NO_HISTORY = 'The suppliers’ past invoices could not be read, so the bank account was not compared.';
@@ -88,13 +94,24 @@ export function startInvoicePanel(ui: InvoicePanelElements, deps: InvoicePanelDe
     ui.status.textContent = 'Reading the invoice on this laptop';
     try {
       const bytes = new Uint8Array(await file.arrayBuffer());
-      const [pdf, suppliers] = await Promise.all([readPdf(await pdfLibrary(), bytes), deps.suppliers()]);
+      const [pdf, suppliers, knownBad] = await Promise.all([
+        readPdf(await pdfLibrary(), bytes),
+        deps.suppliers(),
+        deps.knownBad(),
+      ]);
       if (thisRun !== run) {
         return;
       }
       const fields = extractInvoiceFields(pdf.lines);
       const supplier = suppliers ? findSupplier(pdf.text, suppliers) : null;
-      show(file.name, checkInvoice(fields, pdf, supplier), suppliers !== null);
+      const result = checkInvoice(fields, pdf, supplier);
+      if (knownBad && fields.accountNumber) {
+        // Matched against the copy of the list on this laptop. No request is made.
+        const listed = matchKnownBad(knownBad, { accounts: [fields.accountNumber], domains: [], numbers: [] });
+        result.signals.push(...listed.map((match) => match.signal));
+      }
+      deps.onChecked(result);
+      show(file.name, result, suppliers !== null);
     } catch (error) {
       if (thisRun === run) {
         ui.status.textContent = describe(error);

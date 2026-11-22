@@ -19,6 +19,7 @@ In progress. The build runs from 22 to 30 November 2026, and this README is upda
 | Task 6: the rules engine that turns signals into a green, amber or red verdict, with patterns in Remote Config | Done and tested. Not yet connected to the side panel |
 | Task 10: checks on an opened email: the sender, lookalike domains and links | Code and automated tests done. Not yet confirmed in a real inbox, and the link-safety function is not yet deployed |
 | Task 11: the invoice check: bank account against the supplier's past invoices, amount, and edit traces | Code and automated tests done, on the two fixture invoices. Not yet tried in the side panel on a real laptop |
+| Task 12: the known-bad list, matched on the laptop and taught by each PIN-confirmed "not me" | Code and automated tests done. Not yet deployed or tried end to end |
 | Everything else | Not started |
 
 ## How it works
@@ -145,6 +146,14 @@ The first two are compared with the supplier's past invoices from the seed data.
 To try it, use the two fixture invoices in `fixtures/gmail/`: `invoice-genuine.pdf` raises nothing, and `invoice-fake.pdf` raises all three.
 
 When the open email has a PDF attached, the Opened email card names it. Download it and add it to the Invoice card: reading an attachment straight from the mail page is not built.
+
+### Known scams
+
+The company keeps a list of confirmed bad accounts, domains and phone numbers. The side panel fetches the whole list once and matches against that copy on the laptop: it never asks a server about a single detail, because that would reveal which accounts the company is being asked to pay.
+
+A match appears as a red flag in the Opened email or Invoice card, with how often it was seen, such as "Seen in 2 confirmed scams". The seed data starts the list with the fake invoice's account, seen twice.
+
+The list grows by itself. When a phone check starts, the side panel hands the server the details of the request on screen: domains, account numbers and phone numbers only, never message text. If the real person presses 2 and then enters the right PIN, those details are added, or their count goes up. Without the PIN nothing is added, and the company's own domain and its suppliers' domains and accounts can never be added.
 
 ### The phone check
 

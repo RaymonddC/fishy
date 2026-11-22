@@ -8,6 +8,7 @@ import { collection, doc, getDocs, getFirestore, onSnapshot } from 'firebase/fir
 import { getFunctions, httpsCallable } from 'firebase/functions';
 
 import { getFirebaseApp } from '../firebase/app.ts';
+import type { Suspects } from '../match/suspects.ts';
 import type { CheckStatus, CheckView } from './banner.ts';
 
 export interface DirectoryPerson {
@@ -52,6 +53,20 @@ export async function startPhoneCheck(personId: string): Promise<StartedCheck> {
   // Only a person ID and a request ID are sent. The server refuses anything else.
   const result = await call({ personId, requestId: `req-${crypto.randomUUID()}` });
   return result.data;
+}
+
+/**
+ * Hands the server the details of the request this check is about: domains,
+ * account numbers and phone numbers, never message text. They join the
+ * known-bad list only if the real person says "not me" and enters their PIN.
+ */
+export async function reportSuspectDetails(verificationId: string, suspects: Suspects): Promise<void> {
+  const region = import.meta.env.VITE_FUNCTIONS_REGION || DEFAULT_REGION;
+  const call = httpsCallable<{ verificationId: string; suspects: Suspects }, { kept: number }>(
+    getFunctions(getFirebaseApp(), region),
+    'reportSuspects',
+  );
+  await call({ verificationId, suspects });
 }
 
 /** Calls `onChange` whenever the check changes. Returns a function that stops watching. */

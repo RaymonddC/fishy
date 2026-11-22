@@ -16,7 +16,10 @@ import { missingFirebaseConfig } from '../core/firebase/app.ts';
 import { signIn } from '../core/firebase/auth.ts';
 import { redact } from '../core/redact/redact.ts';
 import { checkLinkSafety } from '../core/checks/link-safety.ts';
+import { knownBadList, refreshKnownBad } from '../core/directory/known-bad-list.ts';
 import { knownParties, supplierRecords } from '../core/directory/known-parties.ts';
+import { collectSuspects } from '../core/match/suspects.ts';
+import type { SuspectSources } from '../core/match/suspects.ts';
 import { startCaptionsPanel } from './captions-panel.ts';
 import { startEmailPanel } from './email-panel.ts';
 import { startInvoicePanel } from './invoice-panel.ts';
@@ -82,6 +85,8 @@ const MODEL_TEXT: Record<DeviceStatus, { text: string; state: State }> = {
 };
 
 let firebaseReady = false;
+// What is on screen now, so a phone check can report its details.
+const onScreen: SuspectSources = {};
 let checking = false;
 
 function describe(error: unknown): string {
@@ -214,6 +219,14 @@ async function start(): Promise<void> {
     },
     {
       known: () => (firebaseReady ? knownParties() : Promise.resolve(null)),
+      knownBad: () => (firebaseReady ? knownBadList() : Promise.resolve(null)),
+      onAssessed: (email, assessment) => {
+        if (email && assessment) {
+          onScreen.email = { assessment, bodyText: email.bodyText, senderAddress: email.sender.address };
+        } else {
+          delete onScreen.email;
+        }
+      },
       checkLink: checkLinkSafety,
       onCheck: (email, assessment) =>
         void checkLines(parsePasted(`${email.subject}\n${email.bodyText}`), assessment.namesToRedact),
@@ -228,7 +241,13 @@ async function start(): Promise<void> {
       flags: ui.invoiceFlags,
       notes: ui.invoiceNotes,
     },
-    { suppliers: () => (firebaseReady ? supplierRecords() : Promise.resolve(null)) },
+    {
+      suppliers: () => (firebaseReady ? supplierRecords() : Promise.resolve(null)),
+      knownBad: () => (firebaseReady ? knownBadList() : Promise.resolve(null)),
+      onChecked: (result) => {
+        onScreen.invoice = result;
+      },
+    },
   );
   setChecking(false);
   void refreshModelStatus();
@@ -275,6 +294,10 @@ async function start(): Promise<void> {
     bannerTitle: ui.phoneBannerTitle,
     bannerDetail: ui.phoneBannerDetail,
     approval: ui.phoneApproval,
+  }, {
+    suspects: () => collectSuspects(onScreen),
+    // The list has just learned something: fetch it again and re-check what is open.
+    onConfirmedScam: () => void refreshKnownBad().then(() => emailPanel.refresh()),
   });
 }
 

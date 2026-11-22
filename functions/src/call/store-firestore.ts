@@ -5,10 +5,13 @@
 // - directoryPrivate/{personId}   phone, pinSalt, pinHash. Only this server code reads it.
 // - verifications/{id}            one phone check. Only the person who asked may read it.
 // - callCounters/{yyyy-mm-dd}     how many calls were placed that day.
+// - verificationSuspects/{id}     the details of the request a check is about. No client access.
+// - knownBad/{type:value}         confirmed bad accounts, domains and numbers. Signed-in clients may read.
+// - company/profile, suppliers/*  the company's own domain and its suppliers. Never marked bad.
 
 import { getFirestore } from 'firebase-admin/firestore';
 
-import type { Person, Store, Verification } from './ports.ts';
+import type { Person, Store, Suspects, Verification } from './ports.ts';
 
 export function firestoreStore(): Store {
   const db = getFirestore();
@@ -71,6 +74,58 @@ export function firestoreStore(): Store {
         transaction.set(ref, { count: used + 1 });
         return true;
       });
+    },
+
+    async saveSuspects(verificationId, suspects) {
+      await db.collection('verificationSuspects').doc(verificationId).set(suspects);
+    },
+
+    async getSuspects(verificationId) {
+      const snapshot = await db.collection('verificationSuspects').doc(verificationId).get();
+      return (snapshot.data() as Suspects | undefined) ?? null;
+    },
+
+    async raiseKnownBad(entries, now) {
+      await db.runTransaction(async (transaction) => {
+        const refs = entries.map((entry) => db.collection('knownBad').doc(`${entry.type}:${entry.value}`));
+        const snapshots = await Promise.all(refs.map((ref) => transaction.get(ref)));
+        entries.forEach((entry, index) => {
+          const existing = snapshots[index]?.data();
+          const ref = refs[index];
+          if (!ref) {
+            return;
+          }
+          transaction.set(
+            ref,
+            {
+              type: entry.type,
+              value: entry.value,
+              seenCount: Number(existing?.seenCount ?? 0) + 1,
+              firstSeen: existing?.firstSeen ?? now,
+              lastSeen: now,
+            },
+            { merge: true },
+          );
+        });
+      });
+    },
+
+    async protectedValues() {
+      const [profile, suppliers] = await Promise.all([
+        db.collection('company').doc('profile').get(),
+        db.collection('suppliers').get(),
+      ]);
+      const domains = [String(profile.data()?.domain ?? '')];
+      const accounts: string[] = [];
+      for (const supplier of suppliers.docs) {
+        const data = supplier.data();
+        domains.push(String(data.domain ?? ''));
+        accounts.push(String(data.bank?.accountNumber ?? ''));
+        for (const entry of Array.isArray(data.invoiceHistory) ? data.invoiceHistory : []) {
+          accounts.push(String(entry?.accountNumber ?? ''));
+        }
+      }
+      return { domains: domains.filter(Boolean), accounts: accounts.filter(Boolean) };
     },
   };
 }
