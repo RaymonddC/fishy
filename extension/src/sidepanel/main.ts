@@ -16,9 +16,10 @@ import { missingFirebaseConfig } from '../core/firebase/app.ts';
 import { signIn } from '../core/firebase/auth.ts';
 import { redact } from '../core/redact/redact.ts';
 import { checkLinkSafety } from '../core/checks/link-safety.ts';
-import { knownParties } from '../core/directory/known-parties.ts';
+import { knownParties, supplierRecords } from '../core/directory/known-parties.ts';
 import { startCaptionsPanel } from './captions-panel.ts';
 import { startEmailPanel } from './email-panel.ts';
+import { startInvoicePanel } from './invoice-panel.ts';
 import { startPhonePanel } from './phone-panel.ts';
 
 type State = 'ok' | 'warn' | 'bad';
@@ -45,7 +46,14 @@ const ui = {
   emailFrom: element('email-from'),
   emailFlags: element('email-flags'),
   emailLinkStatus: element('email-link-status'),
+  emailAttachment: element('email-attachment'),
   emailAdvisory: element<HTMLAnchorElement>('email-advisory'),
+  invoiceCard: element('invoice-card'),
+  invoiceStatus: element('invoice-status'),
+  invoiceFile: element<HTMLInputElement>('invoice-file'),
+  invoiceFields: element('invoice-fields'),
+  invoiceFlags: element('invoice-flags'),
+  invoiceNotes: element('invoice-notes'),
   emailCheck: element<HTMLButtonElement>('email-check'),
   message: element<HTMLTextAreaElement>('message'),
   check: element<HTMLButtonElement>('check'),
@@ -200,6 +208,7 @@ async function start(): Promise<void> {
       from: ui.emailFrom,
       flags: ui.emailFlags,
       linkStatus: ui.emailLinkStatus,
+      attachment: ui.emailAttachment,
       advisory: ui.emailAdvisory,
       check: ui.emailCheck,
     },
@@ -209,6 +218,17 @@ async function start(): Promise<void> {
       onCheck: (email, assessment) =>
         void checkLines(parsePasted(`${email.subject}\n${email.bodyText}`), assessment.namesToRedact),
     },
+  );
+  startInvoicePanel(
+    {
+      card: ui.invoiceCard,
+      status: ui.invoiceStatus,
+      file: ui.invoiceFile,
+      fields: ui.invoiceFields,
+      flags: ui.invoiceFlags,
+      notes: ui.invoiceNotes,
+    },
+    { suppliers: () => (firebaseReady ? supplierRecords() : Promise.resolve(null)) },
   );
   setChecking(false);
   void refreshModelStatus();

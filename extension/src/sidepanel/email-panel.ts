@@ -10,12 +10,14 @@ import type { EmailAssessment } from '../core/email/assess.ts';
 import { EMAIL_SYNC, isEmailUpdate } from '../core/email/messages.ts';
 import type { EmailSyncRequest, OpenEmail } from '../core/email/messages.ts';
 import { describeSignal } from '../core/rules/engine.ts';
+import { flagItem } from './flags.ts';
 
 export interface EmailPanelElements {
   status: HTMLElement;
   from: HTMLElement;
   flags: HTMLElement;
   linkStatus: HTMLElement;
+  attachment: HTMLElement;
   advisory: HTMLAnchorElement;
   check: HTMLButtonElement;
 }
@@ -29,21 +31,6 @@ export interface EmailPanelDeps {
 
 const NO_EMAIL = 'Open an email to check its sender and links';
 
-function flagItem(title: string, detail: string | undefined): HTMLLIElement {
-  const item = document.createElement('li');
-  const heading = document.createElement('span');
-  heading.className = 'flag-title';
-  heading.textContent = title;
-  item.append(heading);
-  if (detail) {
-    const note = document.createElement('span');
-    note.className = 'flag-detail';
-    note.textContent = detail;
-    item.append(note);
-  }
-  return item;
-}
-
 export function startEmailPanel(ui: EmailPanelElements, deps: EmailPanelDeps): { refresh(): void } {
   let current: { email: OpenEmail; assessment: EmailAssessment } | null = null;
   let lastEmail: OpenEmail | null = null;
@@ -55,6 +42,7 @@ export function startEmailPanel(ui: EmailPanelElements, deps: EmailPanelDeps): {
     ui.from.hidden = true;
     ui.flags.hidden = true;
     ui.linkStatus.hidden = true;
+    ui.attachment.hidden = true;
     ui.advisory.hidden = true;
     ui.check.hidden = true;
   }
@@ -119,6 +107,12 @@ export function startEmailPanel(ui: EmailPanelElements, deps: EmailPanelDeps): {
     ui.flags.hidden = assessment.signals.length === 0;
     ui.advisory.hidden = true;
     ui.check.hidden = false;
+    const pdfs = email.attachments.filter((item) => item.filename.toLowerCase().endsWith('.pdf'));
+    ui.attachment.hidden = pdfs.length === 0;
+    ui.attachment.textContent =
+      pdfs.length === 0
+        ? ''
+        : `Attached: ${pdfs.map((item) => item.filename).join(', ')}. To check it, download it and add it to the Invoice card below`;
 
     const found = assessment.signals.length;
     if (!assessment.knownPartiesAvailable) {

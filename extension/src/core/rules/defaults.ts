@@ -3,7 +3,9 @@
 // are used.
 //
 // Red means a known scam shape. Amber means something worth a check. A single
-// ordinary sign, such as "please pay by Friday", matches nothing.
+// ordinary sign, such as "please pay by Friday", matches nothing. Nor does a
+// file that was changed after it was made: plenty of honest documents are, so
+// that only counts in support of something else.
 
 import type { RuleSet } from './engine.ts';
 
@@ -95,12 +97,6 @@ export const DEFAULT_RULES: RuleSet = {
       name: 'Misleading link',
       verdict: 'amber',
       all: ['link_text_mismatch'],
-    },
-    {
-      id: 'edited_document',
-      name: 'Edited document',
-      verdict: 'amber',
-      all: ['document_edited'],
     },
     {
       id: 'unusual_amount',

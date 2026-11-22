@@ -18,6 +18,7 @@ In progress. The build runs from 22 to 30 November 2026, and this README is upda
 | Task 4: demo fixtures for one fictional company, and a seed script | Done. The checks run with the unit tests |
 | Task 6: the rules engine that turns signals into a green, amber or red verdict, with patterns in Remote Config | Done and tested. Not yet connected to the side panel |
 | Task 10: checks on an opened email: the sender, lookalike domains and links | Code and automated tests done. Not yet confirmed in a real inbox, and the link-safety function is not yet deployed |
+| Task 11: the invoice check: bank account against the supplier's past invoices, amount, and edit traces | Code and automated tests done, on the two fixture invoices. Not yet tried in the side panel on a real laptop |
 | Everything else | Not started |
 
 ## How it works
@@ -128,6 +129,22 @@ The last one asks the `checkLink` Cloud Function, which asks Google Web Risk. On
 **Check this email's wording** runs the same check as for pasted text.
 
 Only the message that is open is read, never the inbox list. If nothing appears, the mail page's markup has changed: update `extension/src/content/gmail-selectors.ts`, the only file that depends on it, and paste the email's text into **Pasted text** meanwhile.
+
+### An invoice
+
+In the **Invoice** card, choose an invoice PDF or drop one onto the card. The file is read on the laptop with a PDF library that ships inside the extension, and it is never sent anywhere.
+
+The card shows what it read (supplier, invoice number, total, bank, account) and any red flags:
+
+- the bank account is not one this supplier has been paid on before
+- the amount is three times the supplier's largest past invoice, or more
+- the file was changed after it was made
+
+The first two are compared with the supplier's past invoices from the seed data. Load the seed data first, or the card says the invoice could not be compared. A file changed after it was made is a supporting sign only: it never changes the verdict by itself, because plenty of honest documents are saved twice.
+
+To try it, use the two fixture invoices in `fixtures/gmail/`: `invoice-genuine.pdf` raises nothing, and `invoice-fake.pdf` raises all three.
+
+When the open email has a PDF attached, the Opened email card names it. Download it and add it to the Invoice card: reading an attachment straight from the mail page is not built.
 
 ### The phone check
 

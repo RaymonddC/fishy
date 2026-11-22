@@ -50,8 +50,19 @@
         <p id="email-from" class="email-from" hidden></p>
         <ul id="email-flags" class="flags" hidden></ul>
         <p id="email-link-status" class="hint" hidden></p>
+        <p id="email-attachment" class="hint" hidden></p>
         <a id="email-advisory" class="link" target="_blank" rel="noopener noreferrer" hidden></a>
         <button id="email-check" class="button button-primary" type="button" hidden>Check this email’s wording</button>
+      </section>
+
+      <section id="invoice-card" class="card" aria-labelledby="invoice-title">
+        <h2 id="invoice-title">Invoice</h2>
+        <p id="invoice-status" class="hint">Choose an invoice PDF, or drop one here. It is read on this laptop and not sent anywhere</p>
+        <input id="invoice-file" class="visually-hidden" type="file" accept="application/pdf,.pdf" />
+        <label class="button button-quiet file-button" for="invoice-file">Choose a PDF</label>
+        <dl id="invoice-fields" class="status" hidden></dl>
+        <ul id="invoice-flags" class="flags" hidden></ul>
+        <p id="invoice-notes" class="hint" hidden></p>
       </section>
 
       <section class="card" aria-labelledby="message-title">
